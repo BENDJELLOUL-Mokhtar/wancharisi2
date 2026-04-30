@@ -370,6 +370,142 @@ body {
     padding: 2rem;
     border-radius: var(--border-radius);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scholar-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    animation: fadeIn 1.5s ease;
+}
+
+.avatar-circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a5f7a 0%, #159895 50%, #57c5b6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 8px rgba(255, 255, 255, 0.1),
+                0 0 0 16px rgba(255, 255, 255, 0.05);
+    animation: avatarGlow 3s ease-in-out infinite;
+}
+
+@keyframes avatarGlow {
+    0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                    0 0 0 8px rgba(255, 255, 255, 0.1),
+                    0 0 0 16px rgba(255, 255, 255, 0.05),
+                    0 0 60px rgba(87, 197, 182, 0.3);
+    }
+    50% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4),
+                    0 0 0 8px rgba(255, 255, 255, 0.15),
+                    0 0 0 16px rgba(255, 255, 255, 0.08),
+                    0 0 80px rgba(87, 197, 182, 0.5);
+    }
+}
+
+.avatar-inner {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.avatar-inner i {
+    font-size: 5rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.avatar-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.decoration-arc {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: rotateArc 20s linear infinite;
+}
+
+.arc-1 {
+    width: 220px;
+    height: 220px;
+    top: -10px;
+    left: -10px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    animation-duration: 15s;
+}
+
+.arc-2 {
+    width: 240px;
+    height: 240px;
+    top: -20px;
+    left: -20px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    animation-duration: 20s;
+    animation-direction: reverse;
+}
+
+.arc-3 {
+    width: 260px;
+    height: 260px;
+    top: -30px;
+    left: -30px;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    animation-duration: 25s;
+}
+
+.arc-4 {
+    width: 280px;
+    height: 280px;
+    top: -40px;
+    left: -40px;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    animation-duration: 30s;
+    animation-direction: reverse;
+}
+
+@keyframes rotateArc {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .card-icon {
@@ -1514,6 +1650,48 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .avatar-circle {
+        width: 150px;
+        height: 150px;
+    }
+
+    .avatar-inner {
+        width: 135px;
+        height: 135px;
+    }
+
+    .avatar-inner i {
+        font-size: 3.5rem;
+    }
+
+    .arc-1 {
+        width: 170px;
+        height: 170px;
+        top: -10px;
+        left: -10px;
+    }
+
+    .arc-2 {
+        width: 185px;
+        height: 185px;
+        top: -17px;
+        left: -17px;
+    }
+
+    .arc-3 {
+        width: 200px;
+        height: 200px;
+        top: -25px;
+        left: -25px;
+    }
+
+    .arc-4 {
+        width: 215px;
+        height: 215px;
+        top: -32px;
+        left: -32px;
+    }
+
     .main-title {
         font-size: 2rem;
     }
@@ -1596,6 +1774,48 @@ body {
     .btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .avatar-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .avatar-inner {
+        width: 108px;
+        height: 108px;
+    }
+
+    .avatar-inner i {
+        font-size: 2.5rem;
+    }
+
+    .arc-1 {
+        width: 135px;
+        height: 135px;
+        top: -7px;
+        left: -7px;
+    }
+
+    .arc-2 {
+        width: 150px;
+        height: 150px;
+        top: -15px;
+        left: -15px;
+    }
+
+    .arc-3 {
+        width: 165px;
+        height: 165px;
+        top: -22px;
+        left: -22px;
+    }
+
+    .arc-4 {
+        width: 180px;
+        height: 180px;
+        top: -30px;
+        left: -30px;
     }
 
     .title-prefix {
