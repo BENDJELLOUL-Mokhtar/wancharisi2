@@ -802,6 +802,276 @@ function initMatching() {
         }
         return '#ff9800';
     }
+    
+    // تحميل وعرض النوازل من قاعدة البيانات
+    loadNawazilFromDatabase();
+    
+    function loadNawazilFromDatabase() {
+        if (typeof NawazilDatabase === 'undefined') {
+            console.log('قاعدة بيانات النوازل غير متوفرة');
+            return;
+        }
+        
+        // عرض أمثلة النوازل
+        const examplesGrid = document.getElementById('nawazilExamplesGrid');
+        if (examplesGrid) {
+            // اختيار 6 نوازل عشوائية
+            const randomNawazil = NawazilDatabase.getRandom(6);
+            
+            examplesGrid.innerHTML = randomNawazil.map(nazila => `
+                <div class="example-card" onclick="showNazilaDetails(${nazila.id})" style="cursor: pointer; transition: all 0.3s ease;">
+                    <div style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+                         width: 60px; height: 60px; border-radius: 50%; display: flex; 
+                         align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i class="fas fa-laptop-code" style="color: white; font-size: 1.8rem;"></i>
+                    </div>
+                    <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">${nazila.digitalCase.title.substring(0, 40)}...</h4>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.8rem;">${nazila.digitalCase.description.substring(0, 80)}...</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <span style="background: ${getSimilarityColor(nazila.matching.similarity)}; color: white; 
+                              padding: 0.3rem 0.6rem; border-radius: 15px; font-size: 0.85rem; font-weight: bold;">
+                            ${nazila.matching.similarity}% تطابق
+                        </span>
+                        <span style="color: var(--accent-color); font-size: 0.85rem;">
+                            <i class="fas fa-arrow-left"></i> اطّلع
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // عرض النوازل المعالجة
+        const processedGrid = document.getElementById('processedNawazilGrid');
+        if (processedGrid) {
+            // اختيار النوازل ذات التطابق العالي
+            const processedNawazil = NawazilDatabase.getBysimilarity(90);
+            
+            if (processedNawazil.length > 0) {
+                processedGrid.innerHTML = processedNawazil.map(nazila => `
+                    <div class="processed-nazila-card" style="background: white; padding: 1.5rem; border-radius: 12px; 
+                         box-shadow: var(--box-shadow); border-right: 5px solid var(--success); margin-bottom: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+                            <h4 style="color: var(--primary-color); margin: 0; flex: 1;">
+                                <i class="fas fa-check-circle" style="color: var(--success); margin-left: 0.5rem;"></i>
+                                ${nazila.digitalCase.title}
+                            </h4>
+                            <span style="background: var(--success); color: white; padding: 0.3rem 0.8rem; 
+                                  border-radius: 20px; font-weight: bold; font-size: 0.9rem;">
+                                ${nazila.matching.similarity}% تطابق
+                            </span>
+                        </div>
+                        
+                        <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: var(--dark-color); margin-bottom: 0.5rem;">
+                                <i class="fas fa-scroll"></i> النازلة التاريخية المقابلة:
+                            </h5>
+                            <p style="color: #555; margin: 0;">${nazila.historicalCase.title}</p>
+                        </div>
+                        
+                        <div style="background: #e8f5e9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: var(--success); margin-bottom: 0.5rem;">
+                                <i class="fas fa-gavel"></i> الحكم الفقهي:
+                            </h5>
+                            <p style="color: #555; margin: 0;">${nazila.historicalCase.ruling}</p>
+                        </div>
+                        
+                        <div style="background: #fff3e0; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                            <h5 style="color: #f57c00; margin-bottom: 0.5rem;">
+                                <i class="fas fa-balance-scale"></i> وجه المطابقة:
+                            </h5>
+                            <p style="color: #555; margin: 0;">${nazila.matching.reasoning}</p>
+                        </div>
+                        
+                        <div style="display: flex; gap: 0.5rem; align-items: center; padding: 0.8rem; 
+                             background: #e3f2fd; border-radius: 8px; margin-bottom: 1rem;">
+                            <i class="fas fa-book" style="color: var(--primary-color);"></i>
+                            <span style="color: #555; font-size: 0.9rem;"><strong>المرجع:</strong> ${nazila.historicalCase.reference}</span>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <button onclick="showFullAnalysis(${nazila.id})" style="flex: 1; background: var(--primary-color); 
+                                    color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer; 
+                                    font-weight: bold; transition: all 0.3s ease;">
+                                <i class="fas fa-eye"></i> عرض التحليل الكامل
+                            </button>
+                            <button onclick="exportNazila(${nazila.id})" style="flex: 1; background: var(--accent-color); 
+                                    color: white; border: none; padding: 0.8rem; border-radius: 8px; cursor: pointer; 
+                                    font-weight: bold; transition: all 0.3s ease;">
+                                <i class="fas fa-download"></i> تصدير
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                processedGrid.innerHTML = '<p style="text-align: center; color: #999;">لا توجد نوازل معالجة حالياً</p>';
+            }
+        }
+    }
+}
+
+// وظيفة عرض تفاصيل نازلة
+function showNazilaDetails(id) {
+    if (typeof NawazilDatabase === 'undefined') return;
+    
+    const nazila = NawazilDatabase.getNazila(id);
+    if (!nazila) return;
+    
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.7); z-index: 10000;
+        display: flex; align-items: center; justify-content: center;
+        padding: 2rem;
+    `;
+    
+    modal.innerHTML = `
+        <div style="background: white; max-width: 800px; max-height: 90vh; overflow-y: auto;
+             border-radius: 12px; padding: 2rem; position: relative;">
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="position: absolute; top: 1rem; left: 1rem; background: #e74c3c; 
+                    color: white; border: none; width: 40px; height: 40px; border-radius: 50%; 
+                    cursor: pointer; font-size: 1.2rem; font-weight: bold;">
+                ×
+            </button>
+            
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem; padding-left: 3rem;">
+                <i class="fas fa-laptop-code"></i> النازلة الرقمية المعاصرة
+            </h2>
+            
+            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                <h3 style="color: var(--dark-color); margin-bottom: 1rem;">${nazila.digitalCase.title}</h3>
+                <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">${nazila.digitalCase.description}</p>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                    ${nazila.digitalCase.examples.map(ex => `
+                        <span style="background: var(--accent-color); color: white; padding: 0.3rem 0.8rem; 
+                              border-radius: 15px; font-size: 0.85rem;">
+                            ${ex}
+                        </span>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                <i class="fas fa-scroll"></i> النازلة التاريخية المقابلة
+            </h2>
+            
+            <div style="background: #fff8e1; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;
+                 border-right: 5px solid var(--primary-color);">
+                <h3 style="color: var(--dark-color); margin-bottom: 1rem;">${nazila.historicalCase.title}</h3>
+                <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">${nazila.historicalCase.description}</p>
+                <p style="background: white; padding: 1rem; border-radius: 8px; margin: 0;">
+                    <i class="fas fa-book" style="color: var(--primary-color);"></i>
+                    <strong style="color: var(--primary-color);">المرجع:</strong> ${nazila.historicalCase.reference}
+                </p>
+            </div>
+            
+            <h2 style="color: var(--success); margin-bottom: 1.5rem;">
+                <i class="fas fa-balance-scale"></i> تحليل المطابقة
+            </h2>
+            
+            <div style="background: #e8f5e9; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="font-weight: bold; color: var(--dark-color);">نسبة التطابق:</span>
+                    <span style="background: ${getSimilarityColor(nazila.matching.similarity)}; 
+                          color: white; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold; font-size: 1.1rem;">
+                        ${nazila.matching.similarity}%
+                    </span>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <span style="font-weight: bold; color: var(--dark-color);">نوع المطابقة:</span>
+                    <span style="background: var(--accent-color); color: white; padding: 0.3rem 0.8rem; 
+                          border-radius: 15px; margin-right: 0.5rem;">${nazila.matching.type}</span>
+                </div>
+                <p style="color: #555; line-height: 1.8;">${nazila.matching.reasoning}</p>
+            </div>
+            
+            <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                <i class="fas fa-gavel"></i> الحكم الفقهي والضوابط
+            </h2>
+            
+            <div style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); 
+                 padding: 1.5rem; border-radius: 8px; color: white; margin-bottom: 1.5rem;">
+                <p style="font-size: 1.1rem; line-height: 1.8; margin: 0;">${nazila.historicalCase.ruling}</p>
+            </div>
+            
+            <div style="background: #fff3e0; padding: 1.5rem; border-radius: 8px;">
+                <h4 style="color: #f57c00; margin-bottom: 1rem;">
+                    <i class="fas fa-list-check"></i> الضوابط والشروط:
+                </h4>
+                <ul style="color: #555; line-height: 2; margin: 0; padding-right: 1.5rem;">
+                    ${nazila.matching.conditions.map(cond => `<li>${cond}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// وظيفة عرض التحليل الكامل
+function showFullAnalysis(id) {
+    showNazilaDetails(id);
+}
+
+// وظيفة تصدير نازلة
+function exportNazila(id) {
+    if (typeof NawazilDatabase === 'undefined') return;
+    
+    const nazila = NawazilDatabase.getNazila(id);
+    if (!nazila) return;
+    
+    const text = `
+====================================
+النازلة الرقمية المعاصرة
+====================================
+${nazila.digitalCase.title}
+
+${nazila.digitalCase.description}
+
+أمثلة: ${nazila.digitalCase.examples.join(', ')}
+
+====================================
+النازلة التاريخية المقابلة
+====================================
+${nazila.historicalCase.title}
+
+${nazila.historicalCase.description}
+
+المرجع: ${nazila.historicalCase.reference}
+
+====================================
+تحليل المطابقة
+====================================
+نسبة التطابق: ${nazila.matching.similarity}%
+نوع المطابقة: ${nazila.matching.type}
+
+وجه المطابقة:
+${nazila.matching.reasoning}
+
+====================================
+الحكم الفقهي
+====================================
+${nazila.historicalCase.ruling}
+
+الضوابط والشروط:
+${nazila.matching.conditions.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+
+====================================
+منصة الإمام الونشريسي الرقمية
+تاريخ الإصدار: ${new Date().toLocaleDateString('ar-SA')}
+====================================
+    `;
+    
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `نازلة_${nazila.id}_${new Date().getTime()}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
 }
 
 function performMatching(issue) {

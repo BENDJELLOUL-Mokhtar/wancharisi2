@@ -134,38 +134,18 @@
                 </div>
 
                 <div class="examples-section">
-                    <h3>أمثلة للنوازل الرقمية المعاصرة</h3>
-                    <div class="examples-grid">
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-bitcoin-sign"></i>
-                            <h4>العملات الرقمية</h4>
-                            <p>حكم التعامل بالعملات المشفرة والاستثمار فيها</p>
-                        </div>
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-store"></i>
-                            <h4>التجارة الإلكترونية</h4>
-                            <p>أحكام البيع والشراء عبر المنصات الإلكترونية</p>
-                        </div>
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-file-contract"></i>
-                            <h4>العقود الذكية</h4>
-                            <p>الأحكام الفقهية للعقود الذكية (Smart Contracts)</p>
-                        </div>
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-shield-alt"></i>
-                            <h4>الخصوصية الرقمية</h4>
-                            <p>حماية البيانات الشخصية والخصوصية على الإنترنت</p>
-                        </div>
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-video"></i>
-                            <h4>المحتوى الرقمي</h4>
-                            <p>حقوق الملكية الفكرية للمحتوى الرقمي</p>
-                        </div>
-                        <div class="example-card" onclick="fillExample(this)">
-                            <i class="fas fa-robot"></i>
-                            <h4>الذكاء الاصطناعي</h4>
-                            <p>الأحكام المتعلقة باستخدام الذكاء الاصطناعي</p>
-                        </div>
+                    <h3><i class="fas fa-lightbulb"></i> أمثلة للنوازل الرقمية المعاصرة</h3>
+                    <p style="margin-bottom: 1.5rem; color: #666;">انقر على أي مثال للاطلاع على المطابقة التاريخية</p>
+                    <div class="examples-grid" id="nawazilExamplesGrid">
+                        <!-- سيتم ملؤها من قاعدة البيانات -->
+                    </div>
+                </div>
+
+                <div class="processed-nawazil-section" style="margin-top: 3rem;">
+                    <h3><i class="fas fa-check-circle"></i> النوازل المعالجة افتراضياً</h3>
+                    <p style="margin-bottom: 1.5rem; color: #666;">نوازل رقمية تمت معالجتها وفق منهج الونشريسي في فقه النوازل</p>
+                    <div class="processed-grid" id="processedNawazilGrid">
+                        <!-- سيتم ملؤها من قاعدة البيانات -->
                     </div>
                 </div>
 
@@ -249,6 +229,7 @@
     </footer>
 
     <script src="date-time.js"></script>
+    <script src="nawazil-database.js"></script>
     <script src="demo-data.js"></script>
     <script src="script.js"></script>
 </body>

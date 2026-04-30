@@ -233,53 +233,81 @@ const DemoData = {
     
     // تحميل نتائج مطابقة افتراضية
     loadMatchingResults: function() {
-        const demoResults = [
-            {
-                id: 1,
-                modernIssue: 'عقود الاشتراك الشهري في الخدمات الرقمية (Netflix, Spotify)',
-                date: new Date(2026, 3, 27).toLocaleDateString('ar-SA'),
+        // استخدام البيانات من قاعدة النوازل إذا كانت متوفرة
+        let demoResults = [];
+        
+        if (typeof NawazilDatabase !== 'undefined') {
+            // استخدام 6 نوازل عشوائية من قاعدة البيانات
+            const selectedNawazil = NawazilDatabase.getRandom(6);
+            
+            demoResults = selectedNawazil.map((nazila, index) => ({
+                id: nazila.id,
+                modernIssue: nazila.digitalCase.title,
+                date: new Date(2026, 3, 27 + index).toLocaleDateString('ar-SA'),
                 matches: [
                     {
-                        title: 'إجارة المنافع المتجددة',
-                        similarity: 92,
-                        type: 'مطابقة القواعد الفقهية',
-                        description: 'عقد الاشتراك الشهري يقاس على إجارة المنافع المتجددة التي ذكرها الونشريسي في باب الإجارة',
-                        reference: 'المعيار المعرب، ج7، ص156',
-                        ruling: 'جائز بشرط تحديد المدة والثمن، وإمكانية الانتفاع الفعلي بالخدمة'
+                        title: nazila.historicalCase.title,
+                        similarity: nazila.matching.similarity,
+                        type: nazila.matching.type,
+                        description: nazila.matching.reasoning,
+                        reference: nazila.historicalCase.reference,
+                        ruling: nazila.historicalCase.ruling,
+                        historicalDescription: nazila.historicalCase.description,
+                        digitalExamples: nazila.digitalCase.examples,
+                        conditions: nazila.matching.conditions
                     }
                 ]
-            },
-            {
-                id: 2,
-                modernIssue: 'التوقيع الإلكتروني في العقود الرقمية',
-                date: new Date(2026, 3, 28).toLocaleDateString('ar-SA'),
-                matches: [
-                    {
-                        title: 'الإشهاد والكتابة في المعاملات',
-                        similarity: 88,
-                        type: 'مطابقة الأحكام',
-                        description: 'التوقيع الإلكتروني يحقق مقصد التوثيق والإثبات الذي تحدث عنه الونشريسي في كتاب الوثائق',
-                        reference: 'المنهج الفائق، ج1، ص67-89',
-                        ruling: 'يُعتبر حجة إذا كان موثوقاً ومؤمناً من التلاعب، ويحقق مقاصد التوثيق الشرعي'
-                    }
-                ]
-            },
-            {
-                id: 3,
-                modernIssue: 'التطبيب عن بُعد (Telemedicine)',
-                date: new Date(2026, 3, 29).toLocaleDateString('ar-SA'),
-                matches: [
-                    {
-                        title: 'عقد الإجارة على الأعمال',
-                        similarity: 85,
-                        type: 'قياس النوازل',
-                        description: 'الاستشارة الطبية عن بعد تندرج تحت عقد الإجارة على العمل مع خصوصية التقنية الحديثة',
-                        reference: 'النوازل الجامعة، ج2، ص234',
-                        ruling: 'جائز بشروط: 1) القدرة على التشخيص الدقيق 2) عدم الضرر 3) تحديد الأجرة'
-                    }
-                ]
-            }
-        ];
+            }));
+        } else {
+            // بيانات افتراضية بسيطة إذا لم تكن قاعدة البيانات متوفرة
+            demoResults = [
+                {
+                    id: 1,
+                    modernIssue: 'عقود الاشتراك الشهري في الخدمات الرقمية (Netflix, Spotify)',
+                    date: new Date(2026, 3, 27).toLocaleDateString('ar-SA'),
+                    matches: [
+                        {
+                            title: 'إجارة المنافع المتجددة',
+                            similarity: 92,
+                            type: 'مطابقة القواعد الفقهية',
+                            description: 'عقد الاشتراك الشهري يقاس على إجارة المنافع المتجددة التي ذكرها الونشريسي في باب الإجارة',
+                            reference: 'المعيار المعرب، ج7، ص156',
+                            ruling: 'جائز بشرط تحديد المدة والثمن، وإمكانية الانتفاع الفعلي بالخدمة'
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    modernIssue: 'التوقيع الإلكتروني في العقود الرقمية',
+                    date: new Date(2026, 3, 28).toLocaleDateString('ar-SA'),
+                    matches: [
+                        {
+                            title: 'الإشهاد والكتابة في المعاملات',
+                            similarity: 88,
+                            type: 'مطابقة الأحكام',
+                            description: 'التوقيع الإلكتروني يحقق مقصد التوثيق والإثبات الذي تحدث عنه الونشريسي في كتاب الوثائق',
+                            reference: 'المنهج الفائق، ج1، ص67-89',
+                            ruling: 'يُعتبر حجة إذا كان موثوقاً ومؤمناً من التلاعب، ويحقق مقاصد التوثيق الشرعي'
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    modernIssue: 'التطبيب عن بُعد (Telemedicine)',
+                    date: new Date(2026, 3, 29).toLocaleDateString('ar-SA'),
+                    matches: [
+                        {
+                            title: 'عقد الإجارة على الأعمال',
+                            similarity: 85,
+                            type: 'قياس النوازل',
+                            description: 'الاستشارة الطبية عن بعد تندرج تحت عقد الإجارة على العمل مع خصوصية التقنية الحديثة',
+                            reference: 'النوازل الجامعة، ج2، ص234',
+                            ruling: 'جائز بشروط: 1) القدرة على التشخيص الدقيق 2) عدم الضرر 3) تحديد الأجرة'
+                        }
+                    ]
+                }
+            ];
+        }
         
         localStorage.setItem('wancharisi_demo_matching_results', JSON.stringify(demoResults));
     },

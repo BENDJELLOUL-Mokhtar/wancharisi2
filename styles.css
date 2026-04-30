@@ -1222,6 +1222,38 @@ body {
     color: var(--white);
 }
 
+/* قسم النوازل المعالجة */
+.processed-nawazil-section {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.processed-nawazil-section h3 {
+    color: var(--success);
+    margin-bottom: 1rem;
+}
+
+.processed-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.processed-nazila-card {
+    transition: all 0.3s ease;
+}
+
+.processed-nazila-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.processed-nazila-card button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 .methodology-section {
     background: var(--white);
     padding: 2rem;
