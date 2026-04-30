@@ -677,40 +677,62 @@ body {
 }
 
 .director-details i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
     color: var(--accent-color);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .director-details h3 {
-    font-size: 2rem;
+    font-family: 'Amiri', 'Cairo', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
     color: var(--white);
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.8rem;
     display: inline-block;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.02em;
 }
 
 .details-content {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2rem;
     border-radius: var(--border-radius);
     backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .details-content p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-    line-height: 1.8;
+    margin-bottom: 1.2rem;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.9;
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.details-content p:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
 }
 
 .details-content p strong {
+    font-family: 'Cairo', sans-serif;
     color: var(--accent-color);
-    min-width: 150px;
-    font-size: 1.05rem;
+    min-width: 160px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.03em;
 }
 
 /* الأقسام */
@@ -1744,25 +1766,43 @@ body {
 
     .director-photo {
         margin: 0 auto;
+        width: 200px;
+        height: 200px;
+    }
+
+    .photo-placeholder i {
+        font-size: 4.5rem;
     }
 
     .director-details {
         text-align: center;
     }
 
+    .director-details i {
+        font-size: 2rem;
+    }
+
     .director-details h3 {
         display: block;
         width: 100%;
+        font-size: 2rem;
+    }
+
+    .details-content {
+        padding: 1.5rem;
     }
 
     .details-content p {
         flex-direction: column;
         text-align: center;
-        gap: 0.3rem;
+        gap: 0.5rem;
+        font-size: 1.05rem;
+        padding: 0.6rem;
     }
 
     .details-content p strong {
         min-width: auto;
+        font-size: 1.05rem;
     }
 }
 
@@ -1828,6 +1868,32 @@ body {
 
     .title-decoration {
         font-size: 0.9rem;
+    }
+
+    .director-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .photo-placeholder i {
+        font-size: 3.5rem;
+    }
+
+    .director-details h3 {
+        font-size: 1.6rem;
+    }
+
+    .details-content {
+        padding: 1.2rem;
+    }
+
+    .details-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .details-content p strong {
+        font-size: 1rem;
     }
 
     .options-grid {
