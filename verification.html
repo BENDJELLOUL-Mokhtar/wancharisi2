@@ -8,6 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <!-- شريط التاريخ والوقت -->
+    <div class="datetime-bar">
+        <div class="container">
+            <div class="date-section">
+                <div class="date-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="gregorian-date">جاري التحميل...</span>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <span id="hijri-date">جاري التحميل...</span>
+                </div>
+            </div>
+            <div class="time-section">
+                <i class="fas fa-clock"></i>
+                <span id="current-time">00:00:00</span>
+            </div>
+        </div>
+    </div>
+
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="container">
@@ -267,6 +287,7 @@
         </div>
     </footer>
 
+    <script src="date-time.js"></script>
     <script src="demo-data.js"></script>
     <script src="script.js"></script>
 </body>

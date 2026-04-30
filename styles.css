@@ -37,6 +37,61 @@ body {
 }
 
 /* شريط التنقل */
+/* شريط التاريخ والوقت */
+.datetime-bar {
+    background: linear-gradient(90deg, var(--dark-color), var(--primary-color), var(--dark-color));
+    padding: 0.5rem 0;
+    color: var(--white);
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.datetime-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.date-section {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.date-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.date-item i {
+    color: var(--accent-color);
+}
+
+.time-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+}
+
+.time-section i {
+    color: var(--accent-color);
+    animation: pulse 2s ease-in-out infinite;
+}
+
 .navbar {
     background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
     padding: 1.2rem 0;
@@ -1323,6 +1378,24 @@ body {
 
 /* التصميم المتجاوب */
 @media (max-width: 768px) {
+    .datetime-bar .container {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .date-section {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .date-item,
+    .time-section {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+
     .nav-links {
         display: none;
     }

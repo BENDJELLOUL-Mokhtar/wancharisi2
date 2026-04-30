@@ -512,6 +512,26 @@
     </style>
 </head>
 <body>
+    <!-- شريط التاريخ والوقت -->
+    <div class="datetime-bar">
+        <div class="container">
+            <div class="date-section">
+                <div class="date-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span id="gregorian-date">جاري التحميل...</span>
+                </div>
+                <div class="date-item">
+                    <i class="fas fa-moon"></i>
+                    <span id="hijri-date">جاري التحميل...</span>
+                </div>
+            </div>
+            <div class="time-section">
+                <i class="fas fa-clock"></i>
+                <span id="current-time">00:00:00</span>
+            </div>
+        </div>
+    </div>
+
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="container">
@@ -691,6 +711,7 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="date-time.js"></script>
     <script src="shared-data.js"></script>
     <script src="script.js"></script>
     <script src="library.js"></script>
