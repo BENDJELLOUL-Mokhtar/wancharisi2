@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الإمام أحمد بن يحيى الونشريسي - فقه النوازل الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
+                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="main-title">منصة الإمام أحمد بن يحيى الونشريسي</h1>
+                <h2 class="subtitle">إسقاط فقه النوازل على الواقع الرقمي المعاصر</h2>
+                <p class="description">
+                    منصة رقمية متقدمة تستثمر فكر ومنهج الإمام الونشريسي في فقه النوازل، 
+                    وتطبيقها على القضايا والنوازل الرقمية المعاصرة باستخدام تقنيات الذكاء الاصطناعي 
+                    بالتعاون مع خبراء فقهاء متخصصين.
+                </p>
+                <div class="hero-buttons">
+                    <a href="upload.html" class="btn btn-primary">ابدأ الآن</a>
+                    <a href="#about" class="btn btn-secondary">اعرف المزيد</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="card scholar-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>الإمام أحمد بن يحيى الونشريسي</h3>
+                    <p class="scholar-dates">(834 هـ - 914 هـ)</p>
+                    <p class="scholar-bio">
+                        فقيه مالكي جزائري، صاحب كتاب "المعيار المعرب والجامع المغرب 
+                        عن فتاوى أهل إفريقية والأندلس والمغرب"، من أعظم موسوعات النوازل الفقهية 
+                        في المذهب المالكي.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معلومات المنصة -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>عن المنصة</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>الرؤية</h3>
+                    <p>إحياء منهج الونشريسي في فقه النوازل وتطبيقه على المستجدات الرقمية المعاصرة</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-flag"></i>
+                    <h3>الرسالة</h3>
+                    <p>توظيف التقنيات الحديثة والذكاء الاصطناعي لخدمة التراث الفقهي الإسلامي</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-star"></i>
+                    <h3>الأهداف</h3>
+                    <p>بناء جسر بين الفقه التقليدي والواقع الرقمي من خلال منصة تفاعلية ذكية</p>
+                </div>
+            </div>
+            
+            <div class="designer-card">
+                <div class="designer-info">
+                    <div class="director-section">
+                        <div class="director-photo">
+                            <img src="director-photo.png" alt="أ.د بن جلول مختار" id="directorPhoto">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="director-details">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>مدير المنصة</h3>
+                            <div class="details-content">
+                                <p><strong>الاسم:</strong> أ.د بن جلول مختار</p>
+                                <p><strong>المنصب:</strong> أستاذ اللسانيات العربية</p>
+                                <p><strong>الجهة:</strong> مخبر الدراسات النحوية واللغوية بين التراث والحداثة</p>
+                                <p><strong>الدولة:</strong> الجزائر</p>
+                                <p><strong>الجامعة:</strong> جامعة ابن خلدون - تيارت</p>
+                                <p><strong>البريد الإلكتروني:</strong> mokhtar.benjelloul@univ-tiaret.dz</p>
+                                <p><strong>تاريخ الإطلاق:</strong> <span id="currentDate"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المكتبة الرقمية -->
+    <section class="section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>المكتبة الرقمية</h2>
+                <p>اكتشف مؤلفات الإمام الونشريسي في مكتبة رقمية تفاعلية</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="content-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div class="card" style="text-align: center; padding: 30px;">
+                    <div class="card-icon" style="font-size: 60px; color: #1a5f7a; margin-bottom: 20px;">
+                        <i class="fas fa-books"></i>
+                    </div>
+                    <h3 style="color: #1a5f7a; margin-bottom: 15px;">6 مؤلفات رقمية</h3>
+                    <p style="color: #666; line-height: 1.8;">مجموعة شاملة من كتب الإمام الونشريسي بصيغة PDF</p>
+                </div>
+                
+                <div class="card" style="text-align: center; padding: 30px;">
+                    <div class="card-icon" style="font-size: 60px; color: #159895; margin-bottom: 20px;">
+                        <i class="fas fa-book-reader"></i>
+                    </div>
+                    <h3 style="color: #159895; margin-bottom: 15px;">تصفح تفاعلي</h3>
+                    <p style="color: #666; line-height: 1.8;">عارض كتب متقدم مع تأثير تقليب الصفحات</p>
+                </div>
+                
+                <div class="card" style="text-align: center; padding: 30px;">
+                    <div class="card-icon" style="font-size: 60px; color: #57c5b6; margin-bottom: 20px;">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 style="color: #57c5b6; margin-bottom: 15px;">تحميل مباشر</h3>
+                    <p style="color: #666; line-height: 1.8;">إمكانية تحميل الكتب للقراءة دون اتصال</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="library.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 18px;">
+                    <i class="fas fa-book-open"></i> زيارة المكتبة الرقمية
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="library.html">المكتبة الرقمية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
