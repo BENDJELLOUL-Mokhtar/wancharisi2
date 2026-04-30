@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التحقق من النصوص - منصة الونشريسي الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
+                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link active">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الثاني: التحقق من النصوص -->
+    <section id="verification" class="section alt-bg" style="min-height: calc(100vh - 180px); padding-top: 6rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الثاني: التحقق من النصوص</h2>
+                <p>التحقق اللغوي والفقهي والتاريخي للنصوص</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="verification-container">
+                <div class="verification-panel">
+                    <h3>اختر الوثيقة للتحقق</h3>
+                    <select id="docSelect" class="form-select">
+                        <option value="">-- اختر وثيقة --</option>
+                    </select>
+                    <button class="btn btn-primary mt-3" id="startVerification">
+                        <i class="fas fa-play"></i> بدء التحقق
+                    </button>
+                </div>
+
+                <div class="verification-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="linguistic">
+                            <i class="fas fa-language"></i>
+                            التحقق اللغوي
+                        </button>
+                        <button class="tab-btn" data-tab="jurisprudential">
+                            <i class="fas fa-balance-scale"></i>
+                            التحقق الفقهي
+                        </button>
+                        <button class="tab-btn" data-tab="historical">
+                            <i class="fas fa-history"></i>
+                            التحقق التاريخي
+                        </button>
+                        <button class="tab-btn" data-tab="authenticity">
+                            <i class="fas fa-certificate"></i>
+                            أصالة النص
+                        </button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="linguistic">
+                            <h3>التحقق اللغوي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-spell-check"></i>
+                                    <div>
+                                        <h4>التدقيق الإملائي والنحوي</h4>
+                                        <p>فحص شامل للغة النص وقواعده</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-book"></i>
+                                    <div>
+                                        <h4>التحليل المعجمي</h4>
+                                        <p>تحليل المفردات ومطابقتها مع قواميس العصر</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-text-height"></i>
+                                    <div>
+                                        <h4>التحليل الأسلوبي</h4>
+                                        <p>دراسة أسلوب الكتابة ومقارنته بأسلوب الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="jurisprudential">
+                            <h3>التحقق الفقهي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-search"></i>
+                                    <div>
+                                        <h4>التحقق من المصطلحات الفقهية</h4>
+                                        <p>مطابقة المصطلحات مع المذهب المالكي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-link"></i>
+                                    <div>
+                                        <h4>تخريج النصوص والأحاديث</h4>
+                                        <p>التحقق من صحة النصوص المنقولة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <div>
+                                        <h4>التحقق من الفتاوى المنسوبة</h4>
+                                        <p>مطابقة الفتاوى مع منهج الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="historical">
+                            <h3>التحقق التاريخي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <div>
+                                        <h4>التأريخ الزمني</h4>
+                                        <p>التحقق من التواريخ والأحداث المذكورة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <div>
+                                        <h4>التحقق الجغرافي</h4>
+                                        <p>مطابقة الأماكن والمواقع المذكورة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <h4>التحقق من الأعلام</h4>
+                                        <p>التأكد من صحة نسبة الأقوال للأعلام</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="authenticity">
+                            <h3>أصالة النص وانتماؤه لفكر الونشريسي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-fingerprint"></i>
+                                    <div>
+                                        <h4>تحليل البصمة الأسلوبية</h4>
+                                        <p>مقارنة الأسلوب مع نصوص الونشريسي المؤكدة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-brain"></i>
+                                    <div>
+                                        <h4>تحليل المنهج الفكري</h4>
+                                        <p>مطابقة المنهجية مع منهج الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-check-double"></i>
+                                    <div>
+                                        <h4>النتيجة النهائية</h4>
+                                        <p>تقييم شامل لأصالة النص</p>
+                                        <div class="authenticity-score" id="authenticityScore">
+                                            <span class="score-label">درجة الأصالة:</span>
+                                            <span class="score-value">--</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="archive-section">
+                    <h3><i class="fas fa-archive"></i> حافظة النصوص المحققة</h3>
+                    <div class="archive-list" id="archiveList">
+                        <p class="no-data">لا توجد نصوص محققة حتى الآن</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="library.html">المكتبة الرقمية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="demo-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

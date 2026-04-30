@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحميل المؤلفات - منصة الونشريسي الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
+                <li><a href="upload.html" class="nav-link active">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الأول: تحميل المؤلفات -->
+    <section id="upload" class="section" style="min-height: calc(100vh - 180px); padding-top: 6rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الأول: تحميل المؤلفات</h2>
+                <p>المسح الضوئي المتقدم لمؤلفات الإمام الونشريسي</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>قم بسحب وإفلات الملفات هنا</h3>
+                    <p>أو انقر للاختيار من جهازك</p>
+                    <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-folder-open"></i> اختر الملفات
+                    </button>
+                    <p class="file-types">الصيغ المدعومة: PDF, JPG, PNG, TIFF</p>
+                </div>
+
+                <div class="ocr-features">
+                    <h3>مميزات المسح الضوئي المتقدم</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>التعرف الضوئي على الحروف (OCR)</h4>
+                                <p>تقنية متقدمة للتعرف على النصوص العربية القديمة</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>معالجة الصور الذكية</h4>
+                                <p>تحسين جودة الصور وإزالة التشوهات تلقائياً</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>فهرسة تلقائية</h4>
+                                <p>تنظيم وفهرسة المخطوطات بشكل منهجي</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>حفظ آمن</h4>
+                                <p>تخزين مشفر للوثائق مع نسخ احتياطية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uploaded-files" id="uploadedFiles">
+                <h3>الملفات المحملة</h3>
+                <div class="files-list" id="filesList">
+                    <p class="no-files">لا توجد ملفات محملة حتى الآن</p>
+                </div>
+            </div>
+
+            <!-- قسم الصفحات المستخرجة من المكتبة -->
+            <div class="extracted-pages-section" id="extractedPagesSection" style="margin-top: 40px;">
+                <div class="section-header">
+                    <h3>
+                        <i class="fas fa-scissors"></i> 
+                        الصفحات المستخرجة من المكتبة الرقمية
+                    </h3>
+                    <p>الصفحات التي تم استخراجها من الكتب لمعالجتها</p>
+                </div>
+                
+                <div class="extracted-list" id="extractedList">
+                    <p class="no-files">لا توجد صفحات مستخرجة حتى الآن</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="library.html">المكتبة الرقمية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="shared-data.js"></script>
+    <script src="demo-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+# ملفات النظام
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# مجلدات IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ملفات Node.js (إذا استخدمت لاحقاً)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# ملفات مؤقتة
+*.tmp
+*.temp
+*.log
+*.cache
+
+# ملفات PDF الكبيرة (اختياري - يمكنك إزالة هذا السطر إذا أردت رفع ملفات PDF)
+# مؤلفات الونشريسي/*.pdf
+
+# ملفات النسخ الاحتياطي
+*.bak
+*.backup
+*~
+
+# ملفات الاختبار
+test/
+tests/
+*.test.js
+*.spec.js

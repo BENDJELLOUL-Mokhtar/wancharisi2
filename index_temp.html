@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الإمام أحمد بن يحيى الونشريسي - فقه النوازل الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">الرئيسية</a></li>
+                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="main-title">منصة الإمام أحمد بن يحيى الونشريسي</h1>
+                <h2 class="subtitle">إسقاط فقه النوازل على الواقع الرقمي المعاصر</h2>
+                <p class="description">
+                    منصة رقمية متقدمة تستثمر فكر ومنهج الإمام الونشريسي في فقه النوازل، 
+                    وتطبيقها على القضايا والنوازل الرقمية المعاصرة باستخدام تقنيات الذكاء الاصطناعي 
+                    بالتعاون مع خبراء فقهاء متخصصين.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#upload" class="btn btn-primary">ابدأ الآن</a>
+                    <a href="#about" class="btn btn-secondary">اعرف المزيد</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="card scholar-card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>الإمام أحمد بن يحيى الونشريسي</h3>
+                    <p class="scholar-dates">(834 هـ - 914 هـ)</p>
+                    <p class="scholar-bio">
+                        فقيه مالكي جزائري، صاحب كتاب "المعيار المعرب والجامع المغرب 
+                        عن فتاوى أهل إفريقية والأندلس والمغرب"، من أعظم موسوعات النوازل الفقهية 
+                        في المذهب المالكي.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معلومات المنصة -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>عن المنصة</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>الرؤية</h3>
+                    <p>إحياء منهج الونشريسي في فقه النوازل وتطبيقه على المستجدات الرقمية المعاصرة</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-flag"></i>
+                    <h3>الرسالة</h3>
+                    <p>توظيف التقنيات الحديثة والذكاء الاصطناعي لخدمة التراث الفقهي الإسلامي</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-star"></i>
+                    <h3>الأهداف</h3>
+                    <p>بناء جسر بين الفقه التقليدي والواقع الرقمي من خلال منصة تفاعلية ذكية</p>
+                </div>
+            </div>
+            
+            <div class="designer-card">
+                <div class="designer-info">
+                    <div class="director-section">
+                        <div class="director-photo">
+                            <img src="director-photo.png" alt="أ.د بن جلول مختار" id="directorPhoto">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                        </div>
+                        <div class="director-details">
+                            <i class="fas fa-user-graduate"></i>
+                            <h3>مدير المنصة</h3>
+                            <div class="details-content">
+                                <p><strong>الاسم:</strong> أ.د بن جلول مختار</p>
+                                <p><strong>المنصب:</strong> أستاذ اللسانيات العربية</p>
+                                <p><strong>الجهة:</strong> مخبر الدراسات النحوية واللغوية بين التراث والحداثة</p>
+                                <p><strong>الدولة:</strong> الجزائر</p>
+                                <p><strong>الجامعة:</strong> جامعة ابن خلدون - تيارت</p>
+                                <p><strong>البريد الإلكتروني:</strong> mokhtar.benjelloul@univ-tiaret.dz</p>
+                                <p><strong>تاريخ الإطلاق:</strong> <span id="currentDate"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الأول: تحميل المؤلفات -->
+    <section id="upload" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الأول: تحميل المؤلفات</h2>
+                <p>المسح الضوئي المتقدم لمؤلفات الإمام الونشريسي</p>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>قم بسحب وإفلات الملفات هنا</h3>
+                    <p>أو انقر للاختيار من جهازك</p>
+                    <input type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png,.tiff" hidden>
+                    <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-folder-open"></i> اختر الملفات
+                    </button>
+                    <p class="file-types">الصيغ المدعومة: PDF, JPG, PNG, TIFF</p>
+                </div>
+
+                <div class="ocr-features">
+                    <h3>مميزات المسح الضوئي المتقدم</h3>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>التعرف الضوئي على الحروف (OCR)</h4>
+                                <p>تقنية متقدمة للتعرف على النصوص العربية القديمة</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>معالجة الصور الذكية</h4>
+                                <p>تحسين جودة الصور وإزالة التشوهات تلقائياً</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>فهرسة تلقائية</h4>
+                                <p>تنظيم وفهرسة المخطوطات بشكل منهجي</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>حفظ آمن</h4>
+                                <p>تخزين مشفر للوثائق مع نسخ احتياطية</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uploaded-files" id="uploadedFiles">
+                <h3>الملفات المحملة</h3>
+                <div class="files-list" id="filesList">
+                    <p class="no-files">لا توجد ملفات محملة حتى الآن</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الثاني: التحقق من النصوص -->
+    <section id="verification" class="section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الثاني: التحقق من النصوص</h2>
+                <p>التحقق اللغوي والفقهي والتاريخي للنصوص</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="verification-container">
+                <div class="verification-panel">
+                    <h3>اختر الوثيقة للتحقق</h3>
+                    <select id="docSelect" class="form-select">
+                        <option value="">-- اختر وثيقة --</option>
+                    </select>
+                    <button class="btn btn-primary mt-3" id="startVerification">
+                        <i class="fas fa-play"></i> بدء التحقق
+                    </button>
+                </div>
+
+                <div class="verification-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="linguistic">
+                            <i class="fas fa-language"></i>
+                            التحقق اللغوي
+                        </button>
+                        <button class="tab-btn" data-tab="jurisprudential">
+                            <i class="fas fa-balance-scale"></i>
+                            التحقق الفقهي
+                        </button>
+                        <button class="tab-btn" data-tab="historical">
+                            <i class="fas fa-history"></i>
+                            التحقق التاريخي
+                        </button>
+                        <button class="tab-btn" data-tab="authenticity">
+                            <i class="fas fa-certificate"></i>
+                            أصالة النص
+                        </button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="linguistic">
+                            <h3>التحقق اللغوي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-spell-check"></i>
+                                    <div>
+                                        <h4>التدقيق الإملائي والنحوي</h4>
+                                        <p>فحص شامل للغة النص وقواعده</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-book"></i>
+                                    <div>
+                                        <h4>التحليل المعجمي</h4>
+                                        <p>تحليل المفردات ومطابقتها مع قواميس العصر</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-text-height"></i>
+                                    <div>
+                                        <h4>التحليل الأسلوبي</h4>
+                                        <p>دراسة أسلوب الكتابة ومقارنته بأسلوب الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="jurisprudential">
+                            <h3>التحقق الفقهي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-search"></i>
+                                    <div>
+                                        <h4>التحقق من المصطلحات الفقهية</h4>
+                                        <p>مطابقة المصطلحات مع المذهب المالكي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-link"></i>
+                                    <div>
+                                        <h4>تخريج النصوص والأحاديث</h4>
+                                        <p>التحقق من صحة النصوص المنقولة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-user-tie"></i>
+                                    <div>
+                                        <h4>التحقق من الفتاوى المنسوبة</h4>
+                                        <p>مطابقة الفتاوى مع منهج الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="historical">
+                            <h3>التحقق التاريخي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <div>
+                                        <h4>التأريخ الزمني</h4>
+                                        <p>التحقق من التواريخ والأحداث المذكورة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <div>
+                                        <h4>التحقق الجغرافي</h4>
+                                        <p>مطابقة الأماكن والمواقع المذكورة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-users"></i>
+                                    <div>
+                                        <h4>التحقق من الأعلام</h4>
+                                        <p>التأكد من صحة نسبة الأقوال للأعلام</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="authenticity">
+                            <h3>أصالة النص وانتماؤه لفكر الونشريسي</h3>
+                            <div class="verification-results">
+                                <div class="result-item">
+                                    <i class="fas fa-fingerprint"></i>
+                                    <div>
+                                        <h4>تحليل البصمة الأسلوبية</h4>
+                                        <p>مقارنة الأسلوب مع نصوص الونشريسي المؤكدة</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-brain"></i>
+                                    <div>
+                                        <h4>تحليل المنهج الفكري</h4>
+                                        <p>مطابقة المنهجية مع منهج الونشريسي</p>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <i class="fas fa-check-double"></i>
+                                    <div>
+                                        <h4>النتيجة النهائية</h4>
+                                        <p>تقييم شامل لأصالة النص</p>
+                                        <div class="authenticity-score" id="authenticityScore">
+                                            <span class="score-label">درجة الأصالة:</span>
+                                            <span class="score-value">--</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="archive-section">
+                    <h3><i class="fas fa-archive"></i> حافظة النصوص المحققة</h3>
+                    <div class="archive-list" id="archiveList">
+                        <p class="no-data">لا توجد نصوص محققة حتى الآن</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الثالث: محرك الأفكار -->
+    <section id="ai-engine" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الثالث: محرك الأفكار الذكي</h2>
+                <p>نموذج ذكي لفكر الإمام الونشريسي بالشراكة بين الخبراء البشريين والذكاء الاصطناعي</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="ai-engine-container">
+                <div class="collaboration-model">
+                    <h3>نموذج التعاون الهجين</h3>
+                    <div class="collaboration-grid">
+                        <div class="expert-card human">
+                            <div class="expert-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h4>الخبراء البشريون</h4>
+                            <ul>
+                                <li>علماء الفقه المالكي</li>
+                                <li>متخصصون في فكر الونشريسي</li>
+                                <li>خبراء اللغة العربية</li>
+                                <li>باحثون في التراث الإسلامي</li>
+                            </ul>
+                        </div>
+                        <div class="collaboration-arrow">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>تعاون تكاملي</span>
+                        </div>
+                        <div class="expert-card ai">
+                            <div class="expert-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>وكلاء الذكاء الاصطناعي</h4>
+                            <ul>
+                                <li>معالجة اللغة الطبيعية (NLP)</li>
+                                <li>التعلم الآلي العميق</li>
+                                <li>تحليل البيانات الضخمة</li>
+                                <li>نماذج اللغة المتقدمة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-model-interface">
+                    <h3>واجهة التفاعل مع النموذج الذكي</h3>
+                    <div class="chat-interface">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="system-message">
+                                <i class="fas fa-info-circle"></i>
+                                <p>مرحباً بك في محرك الأفكار الذكي. يمكنك طرح أسئلة فقهية أو استفسارات حول منهج الونشريسي.</p>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <textarea id="chatInput" placeholder="اكتب سؤالك أو استفسارك هنا..." rows="3"></textarea>
+                            <div class="chat-controls">
+                                <button class="btn btn-primary" id="sendMessage">
+                                    <i class="fas fa-paper-plane"></i> إرسال
+                                </button>
+                                <div class="expert-toggle">
+                                    <label>
+                                        <input type="checkbox" id="humanExpert" checked>
+                                        <span>تفعيل مراجعة الخبراء البشريين</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-features">
+                    <h3>إمكانيات النموذج الذكي</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-brain"></i>
+                            <h4>التعلم من النصوص</h4>
+                            <p>استيعاب وتحليل جميع مؤلفات الونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-comments"></i>
+                            <h4>الحوار التفاعلي</h4>
+                            <p>إجابة الأسئلة بأسلوب الونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>تحليل المنهج</h4>
+                            <p>استخراج المنهجية الفقهية للونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>توليد الأفكار</h4>
+                            <p>اقتراح حلول فقهية للنوازل الجديدة</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-link"></i>
+                            <h4>الربط والاستنتاج</h4>
+                            <p>ربط النوازل القديمة بالمستجدات</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-user-check"></i>
+                            <h4>المراجعة البشرية</h4>
+                            <p>مراجعة وتدقيق من خبراء متخصصين</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-repository">
+                    <h3><i class="fas fa-database"></i> مستودع النتائج</h3>
+                    <p>يتم حفظ جميع النتائج والتحليلات للاستدعاء في قسم مطابقة النوازل</p>
+                    <div class="repository-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="analyzedTexts">0</span>
+                            <span class="stat-label">نص محلل</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="generatedInsights">0</span>
+                            <span class="stat-label">فكرة مستخرجة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="expertReviews">0</span>
+                            <span class="stat-label">مراجعة خبير</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم الرابع: مطابقة النوازل -->
+    <section id="matching" class="section alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الرابع: مطابقة النوازل</h2>
+                <p>مطابقة النوازل الفقهية التاريخية بالنوازل الرقمية المعاصرة</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="matching-container">
+                <div class="matching-intro">
+                    <div class="intro-grid">
+                        <div class="intro-card historical">
+                            <i class="fas fa-scroll"></i>
+                            <h3>النوازل التاريخية</h3>
+                            <p>القضايا والمسائل التي عالجها الونشريسي في زمنه</p>
+                        </div>
+                        <div class="matching-arrow">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                        <div class="intro-card modern">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>النوازل الرقمية المعاصرة</h3>
+                            <p>المستجدات والقضايا الفقهية في العصر الرقمي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matching-interface">
+                    <div class="matching-input">
+                        <h3>أدخل النازلة الرقمية المعاصرة</h3>
+                        <textarea id="modernIssue" rows="4" placeholder="مثال: حكم التعاملات المالية عبر العملات الرقمية المشفرة (Cryptocurrency)"></textarea>
+                        
+                        <div class="matching-options">
+                            <h4>خيارات المطابقة</h4>
+                            <div class="options-grid">
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="exact" checked>
+                                    <span>مطابقة دقيقة</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="similar" checked>
+                                    <span>مطابقة متشابهة</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="analogical" checked>
+                                    <span>قياس فقهي</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="principle" checked>
+                                    <span>مطابقة القواعد الفقهية</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="expert-participation">
+                            <h4>المشاركة في التحليل</h4>
+                            <div class="participation-toggle">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>خبراء بشريون</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <i class="fas fa-robot"></i>
+                                    <span>وكلاء الذكاء الاصطناعي</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="startMatching">
+                            <i class="fas fa-search"></i> بدء المطابقة
+                        </button>
+                    </div>
+
+                    <div class="matching-results" id="matchingResults">
+                        <h3>نتائج المطابقة</h3>
+                        <div class="results-container" id="resultsContainer">
+                            <p class="no-results">قم بإدخال نازلة رقمية معاصرة لبدء عملية المطابقة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <h3>أمثلة للنوازل الرقمية المعاصرة</h3>
+                    <div class="examples-grid">
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-bitcoin-sign"></i>
+                            <h4>العملات الرقمية</h4>
+                            <p>حكم التعامل بالعملات المشفرة والاستثمار فيها</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-store"></i>
+                            <h4>التجارة الإلكترونية</h4>
+                            <p>أحكام البيع والشراء عبر المنصات الإلكترونية</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-file-contract"></i>
+                            <h4>العقود الذكية</h4>
+                            <p>الأحكام الفقهية للعقود الذكية (Smart Contracts)</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>الخصوصية الرقمية</h4>
+                            <p>حماية البيانات الشخصية والخصوصية على الإنترنت</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-video"></i>
+                            <h4>المحتوى الرقمي</h4>
+                            <p>حقوق الملكية الفكرية للمحتوى الرقمي</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-robot"></i>
+                            <h4>الذكاء الاصطناعي</h4>
+                            <p>الأحكام المتعلقة باستخدام الذكاء الاصطناعي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology-section">
+                    <h3>منهجية المطابقة</h3>
+                    <div class="methodology-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>التحليل الأولي</h4>
+                            <p>تحليل النازلة الرقمية وتحديد عناصرها الأساسية</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>البحث في التراث</h4>
+                            <p>البحث في مؤلفات الونشريسي عن نوازل مشابهة</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>تحديد أوجه الشبه</h4>
+                            <p>تحديد العلاقات والقواسم المشتركة بين النوازل</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>القياس الفقهي</h4>
+                            <p>تطبيق منهج القياس والاجتهاد الفقهي</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>المراجعة الهجينة</h4>
+                            <p>مراجعة النتائج من قبل الخبراء والذكاء الاصطناعي</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>النتيجة النهائية</h4>
+                            <p>استخلاص الحكم الفقهي مع الأدلة والتعليلات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

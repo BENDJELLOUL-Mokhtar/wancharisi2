@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطابقة النوازل - منصة الونشريسي الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
+                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link active">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الرابع: مطابقة النوازل -->
+    <section id="matching" class="section alt-bg" style="min-height: calc(100vh - 180px); padding-top: 6rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الرابع: مطابقة النوازل</h2>
+                <p>مطابقة النوازل الفقهية التاريخية بالنوازل الرقمية المعاصرة</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="matching-container">
+                <div class="matching-intro">
+                    <div class="intro-grid">
+                        <div class="intro-card historical">
+                            <i class="fas fa-scroll"></i>
+                            <h3>النوازل التاريخية</h3>
+                            <p>القضايا والمسائل التي عالجها الونشريسي في زمنه</p>
+                        </div>
+                        <div class="matching-arrow">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                        <div class="intro-card modern">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>النوازل الرقمية المعاصرة</h3>
+                            <p>المستجدات والقضايا الفقهية في العصر الرقمي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matching-interface">
+                    <div class="matching-input">
+                        <h3>أدخل النازلة الرقمية المعاصرة</h3>
+                        <textarea id="modernIssue" rows="4" placeholder="مثال: حكم التعاملات المالية عبر العملات الرقمية المشفرة (Cryptocurrency)"></textarea>
+                        
+                        <div class="matching-options">
+                            <h4>خيارات المطابقة</h4>
+                            <div class="options-grid">
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="exact" checked>
+                                    <span>مطابقة دقيقة</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="similar" checked>
+                                    <span>مطابقة متشابهة</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="analogical" checked>
+                                    <span>قياس فقهي</span>
+                                </label>
+                                <label class="option-item">
+                                    <input type="checkbox" name="matching-option" value="principle" checked>
+                                    <span>مطابقة القواعد الفقهية</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="expert-participation">
+                            <h4>المشاركة في التحليل</h4>
+                            <div class="participation-toggle">
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <i class="fas fa-user-graduate"></i>
+                                    <span>خبراء بشريون</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" checked>
+                                    <i class="fas fa-robot"></i>
+                                    <span>وكلاء الذكاء الاصطناعي</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="startMatching">
+                            <i class="fas fa-search"></i> بدء المطابقة
+                        </button>
+                    </div>
+
+                    <div class="matching-results" id="matchingResults">
+                        <h3>نتائج المطابقة</h3>
+                        <div class="results-container" id="resultsContainer">
+                            <p class="no-results">قم بإدخال نازلة رقمية معاصرة لبدء عملية المطابقة</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="examples-section">
+                    <h3>أمثلة للنوازل الرقمية المعاصرة</h3>
+                    <div class="examples-grid">
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-bitcoin-sign"></i>
+                            <h4>العملات الرقمية</h4>
+                            <p>حكم التعامل بالعملات المشفرة والاستثمار فيها</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-store"></i>
+                            <h4>التجارة الإلكترونية</h4>
+                            <p>أحكام البيع والشراء عبر المنصات الإلكترونية</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-file-contract"></i>
+                            <h4>العقود الذكية</h4>
+                            <p>الأحكام الفقهية للعقود الذكية (Smart Contracts)</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>الخصوصية الرقمية</h4>
+                            <p>حماية البيانات الشخصية والخصوصية على الإنترنت</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-video"></i>
+                            <h4>المحتوى الرقمي</h4>
+                            <p>حقوق الملكية الفكرية للمحتوى الرقمي</p>
+                        </div>
+                        <div class="example-card" onclick="fillExample(this)">
+                            <i class="fas fa-robot"></i>
+                            <h4>الذكاء الاصطناعي</h4>
+                            <p>الأحكام المتعلقة باستخدام الذكاء الاصطناعي</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="methodology-section">
+                    <h3>منهجية المطابقة</h3>
+                    <div class="methodology-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>التحليل الأولي</h4>
+                            <p>تحليل النازلة الرقمية وتحديد عناصرها الأساسية</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>البحث في التراث</h4>
+                            <p>البحث في مؤلفات الونشريسي عن نوازل مشابهة</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>تحديد أوجه الشبه</h4>
+                            <p>تحديد العلاقات والقواسم المشتركة بين النوازل</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>القياس الفقهي</h4>
+                            <p>تطبيق منهج القياس والاجتهاد الفقهي</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>المراجعة الهجينة</h4>
+                            <p>مراجعة النتائج من قبل الخبراء والذكاء الاصطناعي</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">6</div>
+                            <h4>النتيجة النهائية</h4>
+                            <p>استخلاص الحكم الفقهي مع الأدلة والتعليلات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="library.html">المكتبة الرقمية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="demo-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

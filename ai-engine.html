@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محرك الأفكار الذكي - منصة الونشريسي الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                <span>منصة الونشريسي الرقمية</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
+                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link active">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- القسم الثالث: محرك الأفكار -->
+    <section id="ai-engine" class="section" style="min-height: calc(100vh - 180px); padding-top: 6rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2>القسم الثالث: محرك الأفكار الذكي</h2>
+                <p>نموذج ذكي لفكر الإمام الونشريسي بالشراكة بين الخبراء البشريين والذكاء الاصطناعي</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="ai-engine-container">
+                <div class="collaboration-model">
+                    <h3>نموذج التعاون الهجين</h3>
+                    <div class="collaboration-grid">
+                        <div class="expert-card human">
+                            <div class="expert-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h4>الخبراء البشريون</h4>
+                            <ul>
+                                <li>علماء الفقه المالكي</li>
+                                <li>متخصصون في فكر الونشريسي</li>
+                                <li>خبراء اللغة العربية</li>
+                                <li>باحثون في التراث الإسلامي</li>
+                            </ul>
+                        </div>
+                        <div class="collaboration-arrow">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>تعاون تكاملي</span>
+                        </div>
+                        <div class="expert-card ai">
+                            <div class="expert-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h4>وكلاء الذكاء الاصطناعي</h4>
+                            <ul>
+                                <li>معالجة اللغة الطبيعية (NLP)</li>
+                                <li>التعلم الآلي العميق</li>
+                                <li>تحليل البيانات الضخمة</li>
+                                <li>نماذج اللغة المتقدمة</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-model-interface">
+                    <h3>واجهة التفاعل مع النموذج الذكي</h3>
+                    <div class="chat-interface">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="system-message">
+                                <i class="fas fa-info-circle"></i>
+                                <p>مرحباً بك في محرك الأفكار الذكي. يمكنك طرح أسئلة فقهية أو استفسارات حول منهج الونشريسي.</p>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <textarea id="chatInput" placeholder="اكتب سؤالك أو استفسارك هنا..." rows="3"></textarea>
+                            <div class="chat-controls">
+                                <button class="btn btn-primary" id="sendMessage">
+                                    <i class="fas fa-paper-plane"></i> إرسال
+                                </button>
+                                <div class="expert-toggle">
+                                    <label>
+                                        <input type="checkbox" id="humanExpert" checked>
+                                        <span>تفعيل مراجعة الخبراء البشريين</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-features">
+                    <h3>إمكانيات النموذج الذكي</h3>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-brain"></i>
+                            <h4>التعلم من النصوص</h4>
+                            <p>استيعاب وتحليل جميع مؤلفات الونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-comments"></i>
+                            <h4>الحوار التفاعلي</h4>
+                            <p>إجابة الأسئلة بأسلوب الونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <h4>تحليل المنهج</h4>
+                            <p>استخراج المنهجية الفقهية للونشريسي</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>توليد الأفكار</h4>
+                            <p>اقتراح حلول فقهية للنوازل الجديدة</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-link"></i>
+                            <h4>الربط والاستنتاج</h4>
+                            <p>ربط النوازل القديمة بالمستجدات</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-user-check"></i>
+                            <h4>المراجعة البشرية</h4>
+                            <p>مراجعة وتدقيق من خبراء متخصصين</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-repository">
+                    <h3><i class="fas fa-database"></i> مستودع النتائج</h3>
+                    <p>يتم حفظ جميع النتائج والتحليلات للاستدعاء في قسم مطابقة النوازل</p>
+                    <div class="repository-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="analyzedTexts">0</span>
+                            <span class="stat-label">نص محلل</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="generatedInsights">0</span>
+                            <span class="stat-label">فكرة مستخرجة</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="expertReviews">0</span>
+                            <span class="stat-label">مراجعة خبير</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>منصة الونشريسي الرقمية</h3>
+                    <p>جسر بين التراث الفقهي الإسلامي والواقع الرقمي المعاصر</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="library.html">المكتبة الرقمية</a></li>
+                        <li><a href="upload.html">تحميل المؤلفات</a></li>
+                        <li><a href="verification.html">التحقق من النصوص</a></li>
+                        <li><a href="ai-engine.html">محرك الأفكار</a></li>
+                        <li><a href="matching.html">مطابقة النوازل</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اتصل بنا</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
+                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 منصة الإمام أحمد بن يحيى الونشريسي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="demo-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
