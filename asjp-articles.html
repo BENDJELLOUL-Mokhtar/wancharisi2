@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقالات ASJP - الونشريسي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="translations.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .header .asjp-info {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .header .asjp-info a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-card .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-card .label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Add Article Section */
+        .add-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .add-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            padding: 14px 30px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Articles List */
+        .articles-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .articles-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .articles-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .article-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            flex: 1;
+        }
+
+        .article-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-size: 14px;
+        }
+
+        .btn-view {
+            background: #4caf50;
+        }
+
+        .btn-edit {
+            background: #2196f3;
+        }
+
+        .btn-delete {
+            background: #f44336;
+        }
+
+        .btn-export {
+            background: #ff9800;
+        }
+
+        .btn-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .article-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .article-meta-item i {
+            color: #667eea;
+        }
+
+        .article-abstract {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-right: 3px solid #667eea;
+        }
+
+        .article-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .keyword-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+
+        .article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 6px;
+            border: 2px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .article-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        /* Guide Section */
+        .guide-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        .guide-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .guide-steps {
+            display: grid;
+            gap: 20px;
+        }
+
+        .guide-step {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 4px solid #667eea;
+        }
+
+        .guide-step h3 {
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-step .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .guide-step p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .guide-step code {
+            background: #e0e0e0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #4caf50;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .article-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .article-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+
+            .btn-icon {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Toggle Button -->
+        <button class="language-toggle" id="languageToggle" style="position: fixed; top: 20px; left: 20px; z-index: 1000; background: white; color: #667eea; border: 2px solid #667eea; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">EN</button>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1><i class="fas fa-graduation-cap"></i> <span data-i18n="asjp_title">مقالات ASJP عن الإمام الونشريسي</span></h1>
+            <p class="subtitle" data-i18n="asjp_subtitle">البوابة الجزائرية للمجلات العلمية - تنظيم وأرشفة المقالات العلمية</p>
+            <div class="asjp-info">
+                <i class="fas fa-link"></i>
+                <strong>رابط البوابة:</strong>
+                <a href="https://www.asjp.cerist.dz/" target="_blank">www.asjp.cerist.dz</a>
+                |
+                <a href="https://www.asjp.cerist.dz/en/Articles/search?q=الونشريسي" target="_blank">
+                    <i class="fas fa-search"></i> البحث عن "الونشريسي"
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-card">
+                <div class="icon">📚</div>
+                <div class="number" id="totalArticles">0</div>
+                <div class="label">إجمالي المقالات</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">✍️</div>
+                <div class="number" id="totalAuthors">0</div>
+                <div class="label">عدد الباحثين</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">📅</div>
+                <div class="number" id="latestYear">-</div>
+                <div class="label">أحدث سنة نشر</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🔗</div>
+                <div class="number" id="withLinks">0</div>
+                <div class="label">مقالات بروابط</div>
+            </div>
+        </div>
+
+        <!-- Add Article Form -->
+        <div class="add-section">
+            <h2><i class="fas fa-plus-circle"></i> إضافة مقال جديد</h2>
+            <form id="addArticleForm">
+                <div class="form-group">
+                    <label for="articleUrl">
+                        <i class="fas fa-link"></i> رابط المقال من ASJP *
+                    </label>
+                    <input type="url" id="articleUrl" placeholder="https://www.asjp.cerist.dz/en/article/..." required>
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        💡 انسخ رابط المقال من صفحة المقال في ASJP
+                    </small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="articleTitle">عنوان المقال *</label>
+                        <input type="text" id="articleTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="articleAuthor">المؤلف/الباحث *</label>
+                        <input type="text" id="articleAuthor" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="articleJournal">المجلة *</label>
+                        <input type="text" id="articleJournal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="articleYear">سنة النشر *</label>
+                        <input type="number" id="articleYear" min="1900" max="2100" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="articleVolume">المجلد</label>
+                        <input type="text" id="articleVolume">
+                    </div>
+                    <div class="form-group">
+                        <label for="articleIssue">العدد</label>
+                        <input type="text" id="articleIssue">
+                    </div>
+                    <div class="form-group">
+                        <label for="articlePages">الصفحات</label>
+                        <input type="text" id="articlePages" placeholder="مثال: 15-45">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleAbstract">الملخص</label>
+                    <textarea id="articleAbstract" placeholder="ملخص المقال أو وصف موجز..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="articleKeywords">الكلمات المفتاحية</label>
+                    <input type="text" id="articleKeywords" placeholder="افصل بينها بفاصلة (مثال: الونشريسي، المعيار، الفقه المالكي)">
+                </div>
+
+                <div class="form-group">
+                    <label for="articleLanguage">لغة المقال *</label>
+                    <select id="articleLanguage" required>
+                        <option value="العربية">العربية</option>
+                        <option value="الفرنسية">الفرنسية</option>
+                        <option value="الإنجليزية">الإنجليزية</option>
+                    </select>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i> حفظ المقال
+                    </button>
+                    <button type="button" class="btn-secondary" onclick="resetForm()">
+                        <i class="fas fa-redo"></i> إعادة تعيين
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Articles List -->
+        <div class="articles-section">
+            <h2>
+                <span><i class="fas fa-list"></i> قائمة المقالات</span>
+                <div class="articles-actions">
+                    <button class="btn-secondary" onclick="exportAllToLibrary()">
+                        <i class="fas fa-upload"></i> تصدير الكل للمكتبة
+                    </button>
+                    <button class="btn-secondary" onclick="exportToJSON()">
+                        <i class="fas fa-download"></i> تنزيل JSON
+                    </button>
+                </div>
+            </h2>
+
+            <div class="articles-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="بحث في المقالات..." oninput="searchArticles()">
+                    <i class="fas fa-search"></i>
+                </div>
+                <select id="filterYear" onchange="filterArticles()" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                    <option value="">جميع السنوات</option>
+                </select>
+                <select id="filterLanguage" onchange="filterArticles()" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px;">
+                    <option value="">جميع اللغات</option>
+                    <option value="العربية">العربية</option>
+                    <option value="الفرنسية">الفرنسية</option>
+                    <option value="الإنجليزية">الإنجليزية</option>
+                </select>
+            </div>
+
+            <div id="articlesList"></div>
+        </div>
+
+        <!-- Guide -->
+        <div class="guide-section">
+            <h2><i class="fas fa-question-circle"></i> دليل الاستخدام</h2>
+            <div class="guide-steps">
+                <div class="guide-step">
+                    <h3>
+                        <span class="step-number">1</span>
+                        البحث في ASJP
+                    </h3>
+                    <p>
+                        اذهب إلى <a href="https://www.asjp.cerist.dz/" target="_blank">البوابة الجزائرية للمجلات العلمية</a>
+                        واكتب <code>الونشريسي</code> في مربع البحث
+                    </p>
+                </div>
+
+                <div class="guide-step">
+                    <h3>
+                        <span class="step-number">2</span>
+                        نسخ بيانات المقال
+                    </h3>
+                    <p>
+                        عند فتح أي مقال، انسخ الرابط من شريط العنوان، ثم انسخ بيانات المقال
+                        (العنوان، المؤلف، المجلة، السنة، إلخ)
+                    </p>
+                </div>
+
+                <div class="guide-step">
+                    <h3>
+                        <span class="step-number">3</span>
+                        إضافة المقال هنا
+                    </h3>
+                    <p>
+                        الصق الرابط والبيانات في النموذج أعلاه واضغط "حفظ المقال"
+                    </p>
+                </div>
+
+                <div class="guide-step">
+                    <h3>
+                        <span class="step-number">4</span>
+                        التصدير للمكتبة الرقمية
+                    </h3>
+                    <p>
+                        بعد إضافة جميع المقالات، يمكنك تصديرها دفعة واحدة إلى المكتبة الرقمية
+                        بالضغط على زر "تصدير الكل للمكتبة"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="date-time.js"></script>
+    <script>
+        // تخزين المقالات
+        let articles = [];
+
+        // تحميل المقالات عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            loadArticles();
+            renderArticles();
+            updateStats();
+            updateFilters();
+        });
+
+        // حفظ مقال جديد
+        document.getElementById('addArticleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const article = {
+                id: Date.now(),
+                url: document.getElementById('articleUrl').value,
+                title: document.getElementById('articleTitle').value,
+                author: document.getElementById('articleAuthor').value,
+                journal: document.getElementById('articleJournal').value,
+                year: document.getElementById('articleYear').value,
+                volume: document.getElementById('articleVolume').value,
+                issue: document.getElementById('articleIssue').value,
+                pages: document.getElementById('articlePages').value,
+                abstract: document.getElementById('articleAbstract').value,
+                keywords: document.getElementById('articleKeywords').value,
+                language: document.getElementById('articleLanguage').value,
+                addedDate: new Date().toISOString()
+            };
+
+            articles.push(article);
+            saveArticles();
+            renderArticles();
+            updateStats();
+            updateFilters();
+            resetForm();
+            showNotification('✅ تم حفظ المقال بنجاح!');
+        });
+
+        // حفظ في localStorage
+        function saveArticles() {
+            localStorage.setItem('wancharisi_asjp_articles', JSON.stringify(articles));
+        }
+
+        // تحميل من localStorage
+        function loadArticles() {
+            const saved = localStorage.getItem('wancharisi_asjp_articles');
+            if (saved) {
+                articles = JSON.parse(saved);
+            }
+        }
+
+        // عرض المقالات
+        function renderArticles() {
+            const container = document.getElementById('articlesList');
+            
+            if (articles.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <h3>لا توجد مقالات بعد</h3>
+                        <p>ابدأ بإضافة مقالات من ASJP باستخدام النموذج أعلاه</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = articles.map(article => `
+                <div class="article-card" data-id="${article.id}">
+                    <div class="article-header">
+                        <div class="article-title">${article.title}</div>
+                        <div class="article-actions">
+                            <button class="btn-icon btn-view" onclick="window.open('${article.url}', '_blank')" title="عرض في ASJP">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                            <button class="btn-icon btn-edit" onclick="editArticle(${article.id})" title="تعديل">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon btn-export" onclick="exportToLibrary(${article.id})" title="تصدير للمكتبة">
+                                <i class="fas fa-upload"></i>
+                            </button>
+                            <button class="btn-icon btn-delete" onclick="deleteArticle(${article.id})" title="حذف">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="article-meta">
+                        <div class="article-meta-item">
+                            <i class="fas fa-user"></i>
+                            <span>${article.author}</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <i class="fas fa-book"></i>
+                            <span>${article.journal}</span>
+                        </div>
+                        <div class="article-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>${article.year}</span>
+                        </div>
+                        ${article.volume ? `
+                        <div class="article-meta-item">
+                            <i class="fas fa-hashtag"></i>
+                            <span>مجلد ${article.volume}${article.issue ? '، عدد ' + article.issue : ''}</span>
+                        </div>
+                        ` : ''}
+                        ${article.pages ? `
+                        <div class="article-meta-item">
+                            <i class="fas fa-file-alt"></i>
+                            <span>ص. ${article.pages}</span>
+                        </div>
+                        ` : ''}
+                        <div class="article-meta-item">
+                            <i class="fas fa-language"></i>
+                            <span>${article.language}</span>
+                        </div>
+                    </div>
+
+                    ${article.abstract ? `
+                    <div class="article-abstract">
+                        <strong><i class="fas fa-align-right"></i> الملخص:</strong><br>
+                        ${article.abstract}
+                    </div>
+                    ` : ''}
+
+                    ${article.keywords ? `
+                    <div class="article-keywords">
+                        ${article.keywords.split(',').map(kw => `
+                            <span class="keyword-tag">${kw.trim()}</span>
+                        `).join('')}
+                    </div>
+                    ` : ''}
+
+                    <a href="${article.url}" target="_blank" class="article-link">
+                        <i class="fas fa-link"></i> الرابط في ASJP
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // حذف مقال
+        function deleteArticle(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا المقال؟')) return;
+            
+            articles = articles.filter(a => a.id !== id);
+            saveArticles();
+            renderArticles();
+            updateStats();
+            updateFilters();
+            showNotification('🗑️ تم حذف المقال');
+        }
+
+        // تعديل مقال
+        function editArticle(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            document.getElementById('articleUrl').value = article.url;
+            document.getElementById('articleTitle').value = article.title;
+            document.getElementById('articleAuthor').value = article.author;
+            document.getElementById('articleJournal').value = article.journal;
+            document.getElementById('articleYear').value = article.year;
+            document.getElementById('articleVolume').value = article.volume;
+            document.getElementById('articleIssue').value = article.issue;
+            document.getElementById('articlePages').value = article.pages;
+            document.getElementById('articleAbstract').value = article.abstract;
+            document.getElementById('articleKeywords').value = article.keywords;
+            document.getElementById('articleLanguage').value = article.language;
+
+            // حذف المقال القديم
+            articles = articles.filter(a => a.id !== id);
+            saveArticles();
+
+            // التمرير للنموذج
+            document.querySelector('.add-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // تصدير مقال واحد للمكتبة
+        function exportToLibrary(id) {
+            const article = articles.find(a => a.id === id);
+            if (!article) return;
+
+            // تحويل لصيغة الدراسات
+            const study = {
+                id: Date.now(),
+                type: 'مقال',
+                title: article.title,
+                author: article.author,
+                year: article.year,
+                pages: article.pages || 'غير محدد',
+                publisher: article.journal,
+                category: 'فقه',
+                description: article.abstract || `مقال منشور في ${article.journal}`,
+                language: article.language,
+                keywords: article.keywords,
+                url: article.url,
+                filename: '',
+                hasFile: false,
+                isUploaded: true,
+                source: 'ASJP'
+            };
+
+            // إضافة للمكتبة
+            let libraryStudies = JSON.parse(localStorage.getItem('wancharisi_library_studies') || '[]');
+            libraryStudies.push(study);
+            localStorage.setItem('wancharisi_library_studies', JSON.stringify(libraryStudies));
+
+            showNotification('✅ تم تصدير المقال إلى المكتبة الرقمية!');
+        }
+
+        // تصدير جميع المقالات للمكتبة
+        function exportAllToLibrary() {
+            if (articles.length === 0) {
+                alert('⚠️ لا توجد مقالات لتصديرها');
+                return;
+            }
+
+            if (!confirm(`هل تريد تصدير ${articles.length} مقال إلى المكتبة الرقمية؟`)) return;
+
+            let count = 0;
+            articles.forEach(article => {
+                const study = {
+                    id: Date.now() + count,
+                    type: 'مقال',
+                    title: article.title,
+                    author: article.author,
+                    year: article.year,
+                    pages: article.pages || 'غير محدد',
+                    publisher: article.journal,
+                    category: 'فقه',
+                    description: article.abstract || `مقال منشور في ${article.journal}`,
+                    language: article.language,
+                    keywords: article.keywords,
+                    url: article.url,
+                    filename: '',
+                    hasFile: false,
+                    isUploaded: true,
+                    source: 'ASJP'
+                };
+
+                let libraryStudies = JSON.parse(localStorage.getItem('wancharisi_library_studies') || '[]');
+                libraryStudies.push(study);
+                localStorage.setItem('wancharisi_library_studies', JSON.stringify(libraryStudies));
+                count++;
+            });
+
+            showNotification(`✅ تم تصدير ${count} مقال إلى المكتبة الرقمية!`);
+        }
+
+        // تصدير لملف JSON
+        function exportToJSON() {
+            if (articles.length === 0) {
+                alert('⚠️ لا توجد مقالات لتصديرها');
+                return;
+            }
+
+            const dataStr = JSON.stringify(articles, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `wancharisi_asjp_articles_${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+
+            showNotification('📥 تم تنزيل الملف بنجاح!');
+        }
+
+        // بحث في المقالات
+        function searchArticles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.article-card');
+
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // تحديث الفلاتر
+        function updateFilters() {
+            // سنوات النشر
+            const years = [...new Set(articles.map(a => a.year))].sort((a, b) => b - a);
+            const yearSelect = document.getElementById('filterYear');
+            yearSelect.innerHTML = '<option value="">جميع السنوات</option>';
+            years.forEach(year => {
+                yearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+            });
+        }
+
+        // فلترة المقالات
+        function filterArticles() {
+            const yearFilter = document.getElementById('filterYear').value;
+            const langFilter = document.getElementById('filterLanguage').value;
+            const cards = document.querySelectorAll('.article-card');
+
+            cards.forEach(card => {
+                const id = card.getAttribute('data-id');
+                const article = articles.find(a => a.id == id);
+                
+                let show = true;
+                if (yearFilter && article.year !== yearFilter) show = false;
+                if (langFilter && article.language !== langFilter) show = false;
+
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('totalArticles').textContent = articles.length;
+            
+            const authors = [...new Set(articles.map(a => a.author))];
+            document.getElementById('totalAuthors').textContent = authors.length;
+
+            const years = articles.map(a => parseInt(a.year));
+            document.getElementById('latestYear').textContent = years.length > 0 ? Math.max(...years) : '-';
+
+            const withLinks = articles.filter(a => a.url).length;
+            document.getElementById('withLinks').textContent = withLinks;
+        }
+
+        // إعادة تعيين النموذج
+        function resetForm() {
+            document.getElementById('addArticleForm').reset();
+        }
+
+        // إظهار إشعار
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

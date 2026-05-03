@@ -3,9 +3,1155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحميل المؤلفات - منصة الونشريسي الرقمية</title>
+    <title>تحميل المؤلفات والدراسات - منصة الونشريسي الرقمية</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="translations.js"></script>
+    <style>
+        /* تصميم قسم رفع الدراسات */
+        .studies-upload-section {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+        }
+
+        .study-upload-form {
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-card h3 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            width: 100%;
+        }
+
+        .form-group.half-width {
+            flex: 1;
+        }
+
+        .form-group label {
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: #2e7d32;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* منطقة رفع الملف */
+        .file-upload-area {
+            border: 3px dashed #2e7d32;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-upload-area:hover {
+            background: #e8f5e9;
+            border-color: #1b5e20;
+        }
+
+        .file-upload-area.dragover {
+            background: #c8e6c9;
+            border-color: #1b5e20;
+            transform: scale(1.02);
+        }
+
+        .file-upload-content i {
+            font-size: 60px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+
+        .file-upload-content p {
+            color: #666;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .file-name {
+            display: block;
+            color: #2e7d32;
+            font-weight: bold;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* أزرار الإجراءات */
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(46, 125, 50, 0.4);
+        }
+
+        .btn-reset {
+            background: #f5f5f5;
+            color: #666;
+            border: 2px solid #ddd;
+        }
+
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+
+        /* قسم الدراسات المرفوعة */
+        .uploaded-studies-section {
+            margin-top: 60px;
+        }
+
+        .uploaded-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .uploaded-study-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .uploaded-study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .study-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .study-card-type {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .study-card-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .study-card-status.pending {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .study-card-status.approved {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .study-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .study-card-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .study-card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .study-card-meta i {
+            color: #2e7d32;
+            width: 16px;
+        }
+
+        .study-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .study-card-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .study-card-btn.view {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .study-card-btn.delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .study-card-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* إرشادات الرفع */
+        .upload-guidelines {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .upload-guidelines h3 {
+            color: #2e7d32;
+            font-size: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .guideline-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .guideline-item i {
+            font-size: 24px;
+            color: #2e7d32;
+            margin-top: 5px;
+        }
+
+        .guideline-item h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .guideline-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .no-files {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 16px;
+        }
+
+        /* استجابة الشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .form-card {
+                padding: 25px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-group.half-width {
+                width: 100%;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .uploaded-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* إشعارات النجاح */
+        .success-notification {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease;
+            max-width: 400px;
+        }
+
+        .success-notification i {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* تصميم قسم المراجعة */
+        .review-section {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        .review-study-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        /* المراجعون */
+        .reviewers-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .reviewers-panel h4 {
+            color: #6a1b9a;
+            font-size: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reviewers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .reviewer-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .reviewer-card.human {
+            border-color: #4caf50;
+        }
+
+        .reviewer-card.ai {
+            border-color: #2196f3;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+
+        .reviewer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .reviewer-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+        }
+
+        .reviewer-avatar.ai {
+            background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+        }
+
+        .reviewer-info h5 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .reviewer-type {
+            font-size: 13px;
+            color: #777;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .reviewer-status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .reviewer-status.pending {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .reviewer-status.active {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .reviewer-status.completed {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        /* معايير التقييم */
+        .evaluation-criteria {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .evaluation-criteria h4 {
+            color: #6a1b9a;
+            font-size: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .criterion-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .criterion-name {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .criterion-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .criterion-rating i {
+            color: #ffc107;
+            font-size: 18px;
+        }
+
+        .rating-value {
+            margin-right: 8px;
+            font-weight: bold;
+            color: #6a1b9a;
+        }
+
+        /* منطقة النقاش */
+        .discussion-area {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .discussion-area h4 {
+            color: #6a1b9a;
+            font-size: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .discussion-thread {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .comment-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-right: 4px solid #4caf50;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .comment-item.ai {
+            border-right-color: #2196f3;
+            background: linear-gradient(135deg, #fff 0%, #e3f2fd 100%);
+        }
+
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .comment-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .comment-author i {
+            color: #4caf50;
+        }
+
+        .comment-author.ai i {
+            color: #2196f3;
+        }
+
+        .comment-time {
+            margin-right: auto;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .comment-text {
+            color: #555;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        .add-comment-form {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .add-comment-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .add-comment-form textarea:focus {
+            outline: none;
+            border-color: #6a1b9a;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-add-comment, .btn-ai-analyze {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-add-comment {
+            background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
+            color: white;
+        }
+
+        .btn-add-comment:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(106, 27, 154, 0.3);
+        }
+
+        .btn-ai-analyze {
+            background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+            color: white;
+        }
+
+        .btn-ai-analyze:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        /* القرار النهائي */
+        .final-decision {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .final-decision h4 {
+            color: #6a1b9a;
+            font-size: 22px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .decision-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .decision-buttons button {
+            flex: 1;
+            min-width: 200px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+            color: white;
+        }
+
+        .btn-approve:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-request-revision {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+        }
+
+        .btn-request-revision:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+            color: white;
+        }
+
+        .btn-reject:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(244, 67, 54, 0.4);
+        }
+
+        .btn-close-review {
+            background: linear-gradient(135deg, #757575 0%, #424242 100%);
+            color: white;
+        }
+
+        .btn-close-review:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(117, 117, 117, 0.4);
+        }
+
+        /* تقارير الخبراء */
+        .expert-reports {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .expert-reports h4 {
+            color: #6a1b9a;
+            font-size: 22px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reports-intro {
+            color: #777;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .report-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: #f8f9fa;
+        }
+
+        .report-section h5 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .human-reports {
+            border-left: 4px solid #4caf50;
+        }
+
+        .ai-reports {
+            border-left: 4px solid #2196f3;
+        }
+
+        .reports-grid {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .report-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+
+        .report-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .report-card.human {
+            border-right-color: #4caf50;
+        }
+
+        .report-card.ai {
+            border-right-color: #2196f3;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .report-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .report-author i {
+            font-size: 20px;
+        }
+
+        .report-author.human i {
+            color: #4caf50;
+        }
+
+        .report-author.ai i {
+            color: #2196f3;
+        }
+
+        .report-date {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .report-rating {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .rating-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .rating-label {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .rating-stars {
+            color: #ffc107;
+            font-size: 14px;
+        }
+
+        .report-content {
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .report-section-title {
+            font-weight: bold;
+            color: #6a1b9a;
+            margin: 15px 0 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .report-section-title i {
+            font-size: 16px;
+        }
+
+        .report-list {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+
+        .report-list li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .report-recommendation {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-right: 4px solid #4caf50;
+        }
+
+        .report-recommendation.warning {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-right-color: #ff9800;
+        }
+
+        .report-recommendation.critical {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-right-color: #f44336;
+        }
+
+        .recommendation-label {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .recommendation-label.warning {
+            color: #f57c00;
+        }
+
+        .recommendation-label.critical {
+            color: #c62828;
+        }
+
+        .btn-generate-human-report,
+        .btn-generate-ai-report {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed #ccc;
+            background: white;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .btn-generate-human-report:hover {
+            border-color: #4caf50;
+            color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        .btn-generate-ai-report:hover {
+            border-color: #2196f3;
+            color: #2196f3;
+            background: #e3f2fd;
+        }
+
+        .export-reports {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #f0f0f0;
+            flex-wrap: wrap;
+        }
+
+        .export-reports button {
+            flex: 1;
+            min-width: 180px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-export-pdf {
+            background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+            color: white;
+        }
+
+        .btn-export-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(229, 57, 53, 0.3);
+        }
+
+        .btn-export-print {
+            background: linear-gradient(135deg, #5e35b1 0%, #4527a0 100%);
+            color: white;
+        }
+
+        .btn-export-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(94, 53, 177, 0.3);
+        }
+
+        .btn-export-summary {
+            background: linear-gradient(135deg, #00897b 0%, #00695c 100%);
+            color: white;
+        }
+
+        .btn-export-summary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 137, 123, 0.3);
+        }
+
+        .no-reports {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .no-reports i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        /* زر المراجعة في البطاقة */
+        .study-card-btn.review {
+            background: linear-gradient(135deg, #6a1b9a 0%, #4a148c 100%);
+        }
+
+        .study-card-btn.review:hover {
+            background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
+        }
+
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .reviewers-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .criteria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-buttons {
+                flex-direction: column;
+            }
+
+            .decision-buttons button {
+                min-width: 100%;
+            }
+
+            .comment-actions {
+                flex-direction: column;
+            }
+
+            .btn-add-comment, .btn-ai-analyze {
+                width: 100%;
+            }
+
+            .report-rating {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .export-reports {
+                flex-direction: column;
+            }
+
+            .export-reports button {
+                min-width: 100%;
+            }
+
+            .rating-item {
+                flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- شريط التاريخ والوقت -->
@@ -33,16 +1179,18 @@
         <div class="container">
             <div class="logo">
                 <i class="fas fa-book-open"></i>
-                <span>منصة الونشريسي الرقمية</span>
+                <span data-i18n="site_title">منصة الونشريسي الرقمية</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link">الرئيسية</a></li>
-                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
-                <li><a href="upload.html" class="nav-link active">تحميل المؤلفات</a></li>
-                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
-                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
-                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+                <li><a href="index.html" class="nav-link" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link" data-i18n="nav_library">المكتبة الرقمية</a></li>
+                <li><a href="asjp-articles.html" class="nav-link" data-i18n="nav_asjp">مقالات ASJP</a></li>
+                <li><a href="upload.html" class="nav-link active" data-i18n="nav_upload">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link" data-i18n="nav_verification">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link" data-i18n="nav_ai_engine">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link" data-i18n="nav_matching">مطابقة النوازل</a></li>
             </ul>
+            <button class="language-toggle" id="languageToggle">EN</button>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -131,6 +1279,424 @@
         </div>
     </section>
 
+    <!-- القسم الثاني: تحميل الدراسات والأبحاث -->
+    <section id="upload-studies" class="section studies-upload-section" style="min-height: calc(100vh - 180px); padding: 5rem 0; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-graduation-cap"></i> القسم الثاني: تحميل الدراسات والأبحاث</h2>
+                <p>إضافة دراسات، مقالات، كتب، وأعمال ملتقيات عن الإمام الونشريسي</p>
+                <div class="divider"></div>
+            </div>
+
+            <!-- نموذج رفع الدراسة -->
+            <div class="study-upload-form">
+                <div class="form-card">
+                    <h3><i class="fas fa-upload"></i> رفع دراسة جديدة</h3>
+                    
+                    <form id="studyUploadForm">
+                        <!-- نوع الدراسة -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyType">
+                                    <i class="fas fa-tag"></i> نوع الدراسة *
+                                </label>
+                                <select id="studyType" required>
+                                    <option value="">-- اختر نوع الدراسة --</option>
+                                    <option value="كتاب">كتاب</option>
+                                    <option value="مقال">مقال</option>
+                                    <option value="أطروحة دكتوراه">أطروحة دكتوراه</option>
+                                    <option value="أطروحة ماجستير">أطروحة ماجستير</option>
+                                    <option value="ملتقى">ملتقى / مؤتمر</option>
+                                    <option value="بحث">بحث علمي</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- عنوان الدراسة -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyTitle">
+                                    <i class="fas fa-heading"></i> عنوان الدراسة *
+                                </label>
+                                <input type="text" id="studyTitle" placeholder="أدخل عنوان الدراسة كاملاً" required>
+                            </div>
+                        </div>
+
+                        <!-- المؤلف والسنة -->
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="studyAuthor">
+                                    <i class="fas fa-user-edit"></i> اسم المؤلف/الباحث *
+                                </label>
+                                <input type="text" id="studyAuthor" placeholder="مثال: د. محمد العلمي" required>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="studyYear">
+                                    <i class="fas fa-calendar-alt"></i> سنة النشر *
+                                </label>
+                                <input type="number" id="studyYear" placeholder="مثال: 2024" min="1900" max="2100" required>
+                            </div>
+                        </div>
+
+                        <!-- عدد الصفحات والناشر -->
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="studyPages">
+                                    <i class="fas fa-file-pdf"></i> عدد الصفحات
+                                </label>
+                                <input type="number" id="studyPages" placeholder="مثال: 300" min="1">
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="studyPublisher">
+                                    <i class="fas fa-building"></i> جهة النشر/الجامعة *
+                                </label>
+                                <input type="text" id="studyPublisher" placeholder="مثال: دار الكتب العلمية" required>
+                            </div>
+                        </div>
+
+                        <!-- التصنيف الموضوعي -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyCategory">
+                                    <i class="fas fa-bookmark"></i> التصنيف الموضوعي *
+                                </label>
+                                <select id="studyCategory" required>
+                                    <option value="">-- اختر التصنيف --</option>
+                                    <option value="دراسات عامة">دراسات عامة</option>
+                                    <option value="دراسات منهجية">دراسات منهجية</option>
+                                    <option value="دراسات فقهية">دراسات فقهية</option>
+                                    <option value="دراسات تاريخية">دراسات تاريخية</option>
+                                    <option value="دراسات تحليلية">دراسات تحليلية</option>
+                                    <option value="ملتقيات ومؤتمرات">ملتقيات ومؤتمرات</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- الوصف -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyDescription">
+                                    <i class="fas fa-align-left"></i> وصف الدراسة *
+                                </label>
+                                <textarea id="studyDescription" rows="4" placeholder="وصف مختصر للدراسة ومحتواها وأهميتها العلمية..." required></textarea>
+                            </div>
+                        </div>
+
+                        <!-- رفع الملف -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyFile">
+                                    <i class="fas fa-file-upload"></i> ملف PDF *
+                                </label>
+                                <div class="file-upload-area" id="studyFileUploadArea">
+                                    <input type="file" id="studyFile" accept=".pdf" hidden>
+                                    <div class="file-upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>اسحب ملف PDF هنا أو انقر للاختيار</p>
+                                        <span class="file-name" id="studyFileName"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- معلومات إضافية اختيارية -->
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="studyLanguage">
+                                    <i class="fas fa-language"></i> لغة الدراسة
+                                </label>
+                                <select id="studyLanguage">
+                                    <option value="العربية">العربية</option>
+                                    <option value="الإنجليزية">الإنجليزية</option>
+                                    <option value="الفرنسية">الفرنسية</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="studyKeywords">
+                                    <i class="fas fa-key"></i> الكلمات المفتاحية
+                                </label>
+                                <input type="text" id="studyKeywords" placeholder="افصل بفواصل: فقه، نوازل، مالكية">
+                            </div>
+                        </div>
+
+                        <!-- الرابط الإلكتروني -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="studyUrl">
+                                    <i class="fas fa-link"></i> الرابط الإلكتروني للدراسة
+                                </label>
+                                <input type="url" id="studyUrl" placeholder="https://example.com/study.pdf (اختياري)">
+                            </div>
+                        </div>
+
+                        <!-- أزرار الإجراءات -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-submit">
+                                <i class="fas fa-check"></i> رفع الدراسة
+                            </button>
+                            <button type="reset" class="btn btn-reset">
+                                <i class="fas fa-redo"></i> إعادة تعيين
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- قسم الدراسات المرفوعة -->
+            <div class="uploaded-studies-section" id="uploadedStudiesSection" style="margin-top: 60px;">
+                <div class="section-header">
+                    <h3>
+                        <i class="fas fa-list"></i> 
+                        الدراسات المرفوعة
+                    </h3>
+                    <p>قائمة الدراسات التي تم رفعها بانتظار المراجعة</p>
+                </div>
+                
+                <div class="uploaded-studies-grid" id="uploadedStudiesList">
+                    <p class="no-files">لا توجد دراسات مرفوعة حتى الآن</p>
+                </div>
+            </div>
+
+            <!-- قسم المراجعة والنقاش -->
+            <div class="review-section" id="reviewSection" style="margin-top: 60px; display: none;">
+                <div class="section-header">
+                    <h3>
+                        <i class="fas fa-comments"></i> 
+                        نظام المراجعة والنقاش
+                    </h3>
+                    <p>مراجعة الدراسة بواسطة المراجعين البشريين ووكلاء الذكاء الاصطناعي</p>
+                </div>
+
+                <!-- معلومات الدراسة قيد المراجعة -->
+                <div class="review-study-info" id="reviewStudyInfo">
+                    <!-- سيتم ملؤها ديناميكياً -->
+                </div>
+
+                <!-- المراجعون -->
+                <div class="reviewers-panel">
+                    <h4><i class="fas fa-users"></i> المراجعون</h4>
+                    <div class="reviewers-grid" id="reviewersGrid">
+                        <!-- المراجعون البشريون -->
+                        <div class="reviewer-card human">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="reviewer-info">
+                                <h5>د. محمد الأكاديمي</h5>
+                                <span class="reviewer-type">مراجع بشري - خبير فقه</span>
+                                <div class="reviewer-status pending">⏳ قيد المراجعة</div>
+                            </div>
+                        </div>
+
+                        <div class="reviewer-card human">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="reviewer-info">
+                                <h5>د. فاطمة الباحثة</h5>
+                                <span class="reviewer-type">مراجع بشري - خبير مناهج</span>
+                                <div class="reviewer-status pending">⏳ قيد المراجعة</div>
+                            </div>
+                        </div>
+
+                        <!-- وكلاء الذكاء الاصطناعي -->
+                        <div class="reviewer-card ai">
+                            <div class="reviewer-avatar ai">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="reviewer-info">
+                                <h5>AI Scholar Agent</h5>
+                                <span class="reviewer-type">وكيل AI - تحليل أكاديمي</span>
+                                <div class="reviewer-status active">🤖 نشط</div>
+                            </div>
+                        </div>
+
+                        <div class="reviewer-card ai">
+                            <div class="reviewer-avatar ai">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="reviewer-info">
+                                <h5>AI Quality Agent</h5>
+                                <span class="reviewer-type">وكيل AI - تقييم الجودة</span>
+                                <div class="reviewer-status active">🤖 نشط</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- معايير التقييم -->
+                <div class="evaluation-criteria">
+                    <h4><i class="fas fa-clipboard-check"></i> معايير التقييم</h4>
+                    <div class="criteria-grid" id="criteriaGrid">
+                        <div class="criterion-item">
+                            <span class="criterion-name">الأصالة العلمية</span>
+                            <div class="criterion-rating" data-criterion="originality">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-value">4/5</span>
+                            </div>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-name">المنهجية العلمية</span>
+                            <div class="criterion-rating" data-criterion="methodology">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="rating-value">5/5</span>
+                            </div>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-name">دقة المعلومات</span>
+                            <div class="criterion-rating" data-criterion="accuracy">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="rating-value">4/5</span>
+                            </div>
+                        </div>
+                        <div class="criterion-item">
+                            <span class="criterion-name">الإسهام العلمي</span>
+                            <div class="criterion-rating" data-criterion="contribution">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="rating-value">4.5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تقارير الخبراء -->
+                <div class="expert-reports">
+                    <h4><i class="fas fa-file-alt"></i> تقارير الخبراء</h4>
+                    <p class="reports-intro">تقارير تفصيلية من المراجعين البشريين ووكلاء الذكاء الاصطناعي</p>
+                    
+                    <div class="reports-container" id="reportsContainer">
+                        <!-- تقارير المراجعين البشريين -->
+                        <div class="report-section human-reports">
+                            <h5><i class="fas fa-user-tie"></i> تقارير المراجعين البشريين</h5>
+                            <div class="reports-grid" id="humanReportsGrid">
+                                <!-- سيتم ملؤها ديناميكياً -->
+                            </div>
+                            <button class="btn-generate-human-report" onclick="generateHumanReport()">
+                                <i class="fas fa-plus-circle"></i> إضافة تقرير مراجع بشري
+                            </button>
+                        </div>
+
+                        <!-- تقارير وكلاء AI -->
+                        <div class="report-section ai-reports">
+                            <h5><i class="fas fa-robot"></i> تقارير وكلاء الذكاء الاصطناعي</h5>
+                            <div class="reports-grid" id="aiReportsGrid">
+                                <!-- سيتم ملؤها ديناميكياً -->
+                            </div>
+                            <button class="btn-generate-ai-report" onclick="generateAllAIReports()">
+                                <i class="fas fa-magic"></i> توليد تقارير AI شاملة
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- أزرار التصدير -->
+                    <div class="export-reports">
+                        <button class="btn-export-pdf" onclick="exportReportsPDF()">
+                            <i class="fas fa-file-pdf"></i> تصدير كـ PDF
+                        </button>
+                        <button class="btn-export-print" onclick="printReports()">
+                            <i class="fas fa-print"></i> طباعة التقارير
+                        </button>
+                        <button class="btn-export-summary" onclick="generateSummaryReport()">
+                            <i class="fas fa-file-invoice"></i> تقرير ملخص
+                        </button>
+                    </div>
+                </div>
+
+                <!-- منطقة النقاش -->
+                <div class="discussion-area">
+                    <h4><i class="fas fa-comment-dots"></i> النقاش والتعليقات</h4>
+                    <div class="discussion-thread" id="discussionThread">
+                        <!-- سيتم ملؤها ديناميكياً بالتعليقات -->
+                    </div>
+                    
+                    <!-- نموذج إضافة تعليق -->
+                    <div class="add-comment-form">
+                        <textarea id="newCommentText" placeholder="أضف تعليقك أو ملاحظتك هنا..." rows="3"></textarea>
+                        <div class="comment-actions">
+                            <button class="btn-add-comment" onclick="addComment()">
+                                <i class="fas fa-paper-plane"></i> إرسال التعليق
+                            </button>
+                            <button class="btn-ai-analyze" onclick="triggerAIAnalysis()">
+                                <i class="fas fa-magic"></i> تحليل AI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- القرار النهائي -->
+                <div class="final-decision">
+                    <h4><i class="fas fa-gavel"></i> القرار النهائي</h4>
+                    <div class="decision-buttons">
+                        <button class="btn-approve" onclick="approveStudyAfterReview()">
+                            <i class="fas fa-check-circle"></i> الموافقة على تحميل الدراسة وإضافتها للمكتبة
+                        </button>
+                        <button class="btn-request-revision" onclick="requestRevision()">
+                            <i class="fas fa-edit"></i> طلب تعديلات
+                        </button>
+                        <button class="btn-reject" onclick="rejectStudyAfterReview()">
+                            <i class="fas fa-times-circle"></i> رفض الدراسة
+                        </button>
+                        <button class="btn-close-review" onclick="closeReview()">
+                            <i class="fas fa-times"></i> إغلاق المراجعة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إرشادات الرفع -->
+            <div class="upload-guidelines">
+                <h3><i class="fas fa-info-circle"></i> إرشادات رفع الدراسات</h3>
+                <div class="guidelines-grid">
+                    <div class="guideline-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>الجودة</h4>
+                            <p>تأكد من جودة ملف PDF ووضوح النص</p>
+                        </div>
+                    </div>
+                    <div class="guideline-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>المعلومات الدقيقة</h4>
+                            <p>أدخل معلومات دقيقة عن الدراسة والمؤلف</p>
+                        </div>
+                    </div>
+                    <div class="guideline-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>الحقوق</h4>
+                            <p>تأكد من حقوق النشر والإذن بالرفع</p>
+                        </div>
+                    </div>
+                    <div class="guideline-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <h4>الحجم</h4>
+                            <p>حجم الملف يجب أن يكون أقل من 50 ميجابايت</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -176,5 +1742,1153 @@
     <script src="shared-data.js"></script>
     <script src="demo-data.js"></script>
     <script src="script.js"></script>
+    
+    <!-- سكريبت رفع الدراسات -->
+    <script>
+        // تهيئة منطقة رفع الملف
+        document.addEventListener('DOMContentLoaded', function() {
+            const studyFileUploadArea = document.getElementById('studyFileUploadArea');
+            const studyFileInput = document.getElementById('studyFile');
+            const studyFileName = document.getElementById('studyFileName');
+            const studyUploadForm = document.getElementById('studyUploadForm');
+
+            // الضغط على منطقة الرفع
+            if (studyFileUploadArea) {
+                studyFileUploadArea.addEventListener('click', function() {
+                    studyFileInput.click();
+                });
+
+                // منع الفتح الافتراضي عند السحب
+                studyFileUploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    studyFileUploadArea.classList.add('dragover');
+                });
+
+                studyFileUploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    studyFileUploadArea.classList.remove('dragover');
+                });
+
+                // إفلات الملف
+                studyFileUploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    studyFileUploadArea.classList.remove('dragover');
+                    
+                    if (e.dataTransfer.files.length > 0) {
+                        const file = e.dataTransfer.files[0];
+                        if (file.type === 'application/pdf') {
+                            studyFileInput.files = e.dataTransfer.files;
+                            displayFileName(file);
+                        } else {
+                            alert('⚠️ يرجى رفع ملف PDF فقط');
+                        }
+                    }
+                });
+
+                // اختيار الملف
+                studyFileInput.addEventListener('change', function(e) {
+                    if (e.target.files.length > 0) {
+                        displayFileName(e.target.files[0]);
+                    }
+                });
+            }
+
+            // عرض اسم الملف
+            function displayFileName(file) {
+                const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                if (file.size > 50 * 1024 * 1024) {
+                    alert('⚠️ حجم الملف يجب أن يكون أقل من 50 ميجابايت');
+                    studyFileInput.value = '';
+                    studyFileName.textContent = '';
+                    return;
+                }
+                studyFileName.textContent = `📄 ${file.name} (${sizeMB} MB)`;
+            }
+
+            // معالجة إرسال النموذج
+            if (studyUploadForm) {
+                studyUploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    submitStudy();
+                });
+            }
+
+            // تحميل الدراسات المرفوعة
+            loadUploadedStudies();
+        });
+
+        // إرسال الدراسة
+        function submitStudy() {
+            // التحقق من الملف أولاً
+            const fileInput = document.getElementById('studyFile');
+            if (!fileInput.files[0]) {
+                alert('⚠️ يرجى رفع ملف PDF');
+                return;
+            }
+
+            // قراءة الملف وحفظه كـ base64
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                // جمع البيانات
+                const studyData = {
+                    id: Date.now(),
+                    type: document.getElementById('studyType').value,
+                    title: document.getElementById('studyTitle').value,
+                    author: document.getElementById('studyAuthor').value,
+                    year: document.getElementById('studyYear').value,
+                    pages: document.getElementById('studyPages').value || 'غير محدد',
+                    publisher: document.getElementById('studyPublisher').value,
+                    category: document.getElementById('studyCategory').value,
+                    description: document.getElementById('studyDescription').value,
+                    language: document.getElementById('studyLanguage').value,
+                    keywords: document.getElementById('studyKeywords').value,
+                    url: document.getElementById('studyUrl').value || '',
+                    filename: file.name,
+                    fileSize: file.size,
+                    fileData: e.target.result, // حفظ الملف كـ base64
+                    uploadDate: new Date().toISOString(),
+                    status: 'pending' // pending, approved, rejected
+                };
+
+                // حفظ في localStorage
+                let uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+                uploadedStudies.push(studyData);
+                localStorage.setItem('wancharisi_uploaded_studies', JSON.stringify(uploadedStudies));
+
+                // إظهار رسالة نجاح
+                showSuccessNotification('✅ تم رفع الدراسة بنجاح! سيتم مراجعتها قريباً.');
+
+                // إعادة تعيين النموذج
+                document.getElementById('studyUploadForm').reset();
+                document.getElementById('studyFileName').textContent = '';
+
+                // تحديث قائمة الدراسات المرفوعة
+                loadUploadedStudies();
+
+                // التمرير إلى قائمة الدراسات
+                setTimeout(() => {
+                    document.getElementById('uploadedStudiesSection').scrollIntoView({ behavior: 'smooth' });
+                }, 500);
+            };
+
+            reader.onerror = function() {
+                alert('❌ حدث خطأ أثناء قراءة الملف. الرجاء المحاولة مرة أخرى.');
+            };
+
+            // قراءة الملف كـ Data URL (base64)
+            reader.readAsDataURL(file);
+        }
+
+        // تحميل الدراسات المرفوعة
+        function loadUploadedStudies() {
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const listContainer = document.getElementById('uploadedStudiesList');
+
+            if (!listContainer) return;
+
+            if (uploadedStudies.length === 0) {
+                listContainer.innerHTML = '<p class="no-files">لا توجد دراسات مرفوعة حتى الآن</p>';
+                return;
+            }
+
+            listContainer.innerHTML = uploadedStudies.map(study => `
+                <div class="uploaded-study-card" data-study-id="${study.id}">
+                    <div class="study-card-header">
+                        <span class="study-card-type">${study.type}</span>
+                        <span class="study-card-status ${study.status}">
+                            ${study.status === 'pending' ? '⏳ قيد المراجعة' : 
+                              study.status === 'approved' ? '✅ تمت الموافقة' : '❌ مرفوض'}
+                        </span>
+                    </div>
+                    <h4 class="study-card-title">${study.title}</h4>
+                    <div class="study-card-meta">
+                        <span><i class="fas fa-user-edit"></i> ${study.author}</span>
+                        <span><i class="fas fa-calendar-alt"></i> ${study.year}</span>
+                        <span><i class="fas fa-building"></i> ${study.publisher}</span>
+                        <span><i class="fas fa-file-pdf"></i> ${(study.fileSize / (1024 * 1024)).toFixed(2)} MB</span>
+                        <span><i class="fas fa-clock"></i> ${new Date(study.uploadDate).toLocaleDateString('ar-EG')}</span>
+                    </div>
+                    <div class="study-card-actions">
+                        <button class="study-card-btn view" onclick="viewStudyDetails(${study.id})">
+                            <i class="fas fa-eye"></i> عرض التفاصيل
+                        </button>
+                        <button class="study-card-btn review" onclick="openReviewPanel(${study.id})">
+                            <i class="fas fa-comments"></i> مراجعة
+                        </button>
+                        <button class="study-card-btn delete" onclick="deleteUploadedStudy(${study.id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // عرض تفاصيل الدراسة
+        function viewStudyDetails(studyId) {
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const study = uploadedStudies.find(s => s.id === studyId);
+
+            if (!study) return;
+
+            const details = `
+📚 نوع الدراسة: ${study.type}
+📖 العنوان: ${study.title}
+✍️ المؤلف: ${study.author}
+📅 السنة: ${study.year}
+📄 عدد الصفحات: ${study.pages}
+🏢 الناشر: ${study.publisher}
+🏷️ التصنيف: ${study.category}
+🌍 اللغة: ${study.language}
+🔑 الكلمات المفتاحية: ${study.keywords || 'لا يوجد'}
+🔗 الرابط الإلكتروني: ${study.url || 'لا يوجد'}
+
+📝 الوصف:
+${study.description}
+
+📁 الملف: ${study.filename}
+💾 الحجم: ${(study.fileSize / (1024 * 1024)).toFixed(2)} MB
+🕐 تاريخ الرفع: ${new Date(study.uploadDate).toLocaleString('ar-EG')}
+⏱️ الحالة: ${study.status === 'pending' ? 'قيد المراجعة' : study.status === 'approved' ? 'تمت الموافقة' : 'مرفوض'}
+            `;
+
+            alert(details);
+        }
+
+        // حذف دراسة مرفوعة
+        function deleteUploadedStudy(studyId) {
+            if (!confirm('❓ هل أنت متأكد من حذف هذه الدراسة؟')) {
+                return;
+            }
+
+            let uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            uploadedStudies = uploadedStudies.filter(s => s.id !== studyId);
+            localStorage.setItem('wancharisi_uploaded_studies', JSON.stringify(uploadedStudies));
+
+            showSuccessNotification('🗑️ تم حذف الدراسة بنجاح');
+            loadUploadedStudies();
+        }
+
+        // إظهار إشعار النجاح
+        function showSuccessNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'success-notification';
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-check-circle"></i>
+                    <div>${message}</div>
+                </div>
+            `;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideInRight 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // الموافقة على دراسة (للمشرفين)
+        function approveStudy(studyId) {
+            let uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const studyIndex = uploadedStudies.findIndex(s => s.id === studyId);
+            
+            if (studyIndex !== -1) {
+                uploadedStudies[studyIndex].status = 'approved';
+                localStorage.setItem('wancharisi_uploaded_studies', JSON.stringify(uploadedStudies));
+                
+                // إضافة للمكتبة الرقمية
+                addStudyToLibrary(uploadedStudies[studyIndex]);
+                
+                showSuccessNotification('✅ تمت الموافقة على الدراسة وإضافتها للمكتبة');
+                loadUploadedStudies();
+            }
+        }
+
+        // إضافة الدراسة للمكتبة الرقمية
+        function addStudyToLibrary(study) {
+            // هذه الوظيفة ستضيف الدراسة إلى مصفوفة studies في library.js
+            // في التطبيق الفعلي، يجب إرسالها إلى الخادم
+            console.log('إضافة الدراسة للمكتبة:', study.title);
+            
+            // يمكن حفظها في localStorage مؤقتاً
+            let libraryStudies = JSON.parse(localStorage.getItem('wancharisi_library_studies') || '[]');
+            libraryStudies.push({
+                id: study.id,
+                title: study.title,
+                author: study.author,
+                type: study.type,
+                year: study.year,
+                pages: study.pages,
+                description: study.description,
+                publisher: study.publisher,
+                category: study.category,
+                url: study.url || '',
+                filename: study.filename,
+                fileData: study.fileData || null, // حفظ بيانات الملف
+                fileSize: study.fileSize || 0,
+                hasFile: true,
+                isUploaded: true // علامة للتمييز بين الدراسات المرفوعة والتجريبية
+            });
+            localStorage.setItem('wancharisi_library_studies', JSON.stringify(libraryStudies));
+        }
+
+        // ===== نظام المراجعة والنقاش =====
+
+        let currentReviewStudyId = null;
+        let discussionComments = [];
+
+        // فتح لوحة المراجعة
+        function openReviewPanel(studyId) {
+            currentReviewStudyId = studyId;
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const study = uploadedStudies.find(s => s.id === studyId);
+
+            if (!study) return;
+
+            // عرض قسم المراجعة
+            const reviewSection = document.getElementById('reviewSection');
+            reviewSection.style.display = 'block';
+
+            // ملء معلومات الدراسة
+            const reviewStudyInfo = document.getElementById('reviewStudyInfo');
+            reviewStudyInfo.innerHTML = `
+                <h4>🔍 الدراسة قيد المراجعة</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <div><strong>📚 النوع:</strong> ${study.type}</div>
+                    <div><strong>📖 العنوان:</strong> ${study.title}</div>
+                    <div><strong>✍️ المؤلف:</strong> ${study.author}</div>
+                    <div><strong>📅 السنة:</strong> ${study.year}</div>
+                    <div><strong>🏢 الناشر:</strong> ${study.publisher}</div>
+                    <div><strong>🏷️ التصنيف:</strong> ${study.category}</div>
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>📝 الوصف:</strong>
+                    <p style="color: #666; line-height: 1.8; margin-top: 8px;">${study.description}</p>
+                </div>
+            `;
+
+            // تحميل التعليقات من localStorage
+            loadDiscussionComments(studyId);
+
+            // تحميل التقارير من localStorage
+            loadReports(studyId);
+
+            // بدء المراجعة التلقائية بواسطة AI
+            setTimeout(() => {
+                initiateAIReview(study);
+            }, 1000);
+
+            // التمرير إلى قسم المراجعة
+            reviewSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // تحميل التعليقات
+        function loadDiscussionComments(studyId) {
+            const allComments = JSON.parse(localStorage.getItem('wancharisi_review_comments') || '{}');
+            discussionComments = allComments[studyId] || [];
+            renderComments();
+        }
+
+        // حفظ التعليقات
+        function saveDiscussionComments(studyId) {
+            const allComments = JSON.parse(localStorage.getItem('wancharisi_review_comments') || '{}');
+            allComments[studyId] = discussionComments;
+            localStorage.setItem('wancharisi_review_comments', JSON.stringify(allComments));
+        }
+
+        // عرض التعليقات
+        function renderComments() {
+            const discussionThread = document.getElementById('discussionThread');
+            
+            if (discussionComments.length === 0) {
+                discussionThread.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: #999;">
+                        <i class="fas fa-comments" style="font-size: 48px; margin-bottom: 15px;"></i>
+                        <p>لا توجد تعليقات بعد. ابدأ النقاش!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            discussionThread.innerHTML = discussionComments.map(comment => `
+                <div class="comment-item ${comment.isAI ? 'ai' : ''}">
+                    <div class="comment-header">
+                        <span class="comment-author ${comment.isAI ? 'ai' : ''}">
+                            <i class="fas ${comment.isAI ? 'fa-robot' : 'fa-user'}"></i>
+                            ${comment.author}
+                        </span>
+                        <span class="comment-time">${new Date(comment.timestamp).toLocaleString('ar-EG')}</span>
+                    </div>
+                    <div class="comment-text">${comment.text}</div>
+                </div>
+            `).join('');
+
+            // التمرير للأسفل
+            discussionThread.scrollTop = discussionThread.scrollHeight;
+        }
+
+        // إضافة تعليق
+        function addComment() {
+            const commentText = document.getElementById('newCommentText').value.trim();
+            
+            if (!commentText) {
+                alert('⚠️ الرجاء إدخال نص التعليق');
+                return;
+            }
+
+            const newComment = {
+                id: Date.now(),
+                author: 'مراجع بشري',
+                text: commentText,
+                timestamp: new Date().toISOString(),
+                isAI: false
+            };
+
+            discussionComments.push(newComment);
+            saveDiscussionComments(currentReviewStudyId);
+            renderComments();
+
+            // مسح حقل الإدخال
+            document.getElementById('newCommentText').value = '';
+
+            showSuccessNotification('✅ تم إضافة التعليق بنجاح');
+
+            // رد تلقائي من AI بعد 2 ثانية
+            setTimeout(() => {
+                generateAIResponse(commentText);
+            }, 2000);
+        }
+
+        // بدء المراجعة التلقائية بواسطة AI
+        function initiateAIReview(study) {
+            // تعليق من AI Scholar Agent
+            const scholarComment = {
+                id: Date.now(),
+                author: 'AI Scholar Agent',
+                text: `تحليل أكاديمي للدراسة:
+
+✅ نقاط القوة:
+• المنهجية العلمية واضحة ومتسقة
+• العنوان يعكس محتوى الدراسة بدقة
+• التوثيق يبدو احترافياً
+
+⚠️ ملاحظات للتحسين:
+• يُفضل إضافة المزيد من المراجع الحديثة
+• توسيع قسم النتائج والتوصيات
+• مراجعة بعض المصطلحات الفقهية
+
+📊 التقييم العام: 4/5 ⭐
+الدراسة ذات قيمة علمية عالية وتستحق النشر بعد بعض التحسينات البسيطة.`,
+                timestamp: new Date().toISOString(),
+                isAI: true
+            };
+
+            discussionComments.push(scholarComment);
+            saveDiscussionComments(currentReviewStudyId);
+            renderComments();
+
+            // تعليق من AI Quality Agent بعد 3 ثواني
+            setTimeout(() => {
+                const qualityComment = {
+                    id: Date.now() + 1,
+                    author: 'AI Quality Agent',
+                    text: `تقييم الجودة الفنية:
+
+📄 الملف:
+• الحجم: ${(study.fileSize / (1024 * 1024)).toFixed(2)} MB - مناسب ✅
+• الصيغة: PDF - متوافق مع المعايير ✅
+
+📝 البيانات الوصفية:
+• العنوان: واضح ومحدد ✅
+• المؤلف: ${study.author} - مذكور بوضوح ✅
+• السنة: ${study.year} - حديثة ✅
+• الناشر: ${study.publisher} - جهة معتمدة ✅
+
+🔍 الفحص اللغوي:
+• الوصف خالٍ من الأخطاء الإملائية الواضحة
+• الأسلوب أكاديمي ومناسب
+
+💡 التوصية: الموافقة على تحميل الدراسة وإضافتها للمكتبة الرقمية`,
+                    timestamp: new Date().toISOString(),
+                    isAI: true
+                };
+
+                discussionComments.push(qualityComment);
+                saveDiscussionComments(currentReviewStudyId);
+                renderComments();
+            }, 3000);
+        }
+
+        // تحليل AI إضافي
+        function triggerAIAnalysis() {
+            const aiAnalysis = {
+                id: Date.now(),
+                author: 'AI Deep Analysis Agent',
+                text: `تحليل معمق إضافي:
+
+🎯 التركيز الموضوعي:
+الدراسة تركز على جوانب مهمة من تراث الونشريسي، وهذا يتماشى مع أهداف المكتبة الرقمية.
+
+📚 الإسهام العلمي:
+• تقدم رؤية جديدة في المجال
+• تربط بين التراث والمعاصرة
+• منهجية البحث متميزة
+
+🔬 المنهج المتبع:
+${Math.random() > 0.5 ? 'منهج تحليلي وصفي' : 'منهج تاريخي مقارن'} - مناسب للموضوع
+
+⭐ التقييم النهائي:
+نوصي بقوة بالموافقة على تحميل هذه الدراسة وإضافتها إلى المكتبة الرقمية.
+
+🤝 جاهز للنقاش مع المراجعين البشريين لاتخاذ القرار النهائي.`,
+                timestamp: new Date().toISOString(),
+                isAI: true
+            };
+
+            discussionComments.push(aiAnalysis);
+            saveDiscussionComments(currentReviewStudyId);
+            renderComments();
+
+            showSuccessNotification('🤖 تم إنشاء تحليل AI معمق');
+        }
+
+        // توليد رد AI على التعليق
+        function generateAIResponse(userComment) {
+            const responses = [
+                `شكراً على ملاحظتك. نتفق معك في هذه النقطة. `,
+                `ملاحظة قيمة! سنأخذها بعين الاعتبار. `,
+                `رأي سديد. هذا يعزز من جودة المراجعة. `,
+                `نقطة مهمة. نوصي بالتواصل مع المؤلف لتوضيح هذا الجانب. `,
+                `تحليل ممتاز! هذا يضيف بعداً جديداً للمراجعة. `
+            ];
+
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+
+            const aiResponse = {
+                id: Date.now(),
+                author: 'AI Moderator Agent',
+                text: `${randomResponse}
+
+بناءً على تعليقك، نقترح:
+• المتابعة مع المؤلف للتوضيح
+• إضافة هذه النقطة للتقرير النهائي
+• التشاور مع المراجعين الآخرين
+
+هل تريد إضافة المزيد من التفاصيل؟`,
+                timestamp: new Date().toISOString(),
+                isAI: true
+            };
+
+            discussionComments.push(aiResponse);
+            saveDiscussionComments(currentReviewStudyId);
+            renderComments();
+        }
+
+        // الموافقة على الدراسة بعد المراجعة
+        function approveStudyAfterReview() {
+            if (!confirm('✅ هل أنت متأكد من الموافقة على تحميل هذه الدراسة وإضافتها إلى المكتبة الرقمية؟')) {
+                return;
+            }
+
+            let uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const studyIndex = uploadedStudies.findIndex(s => s.id === currentReviewStudyId);
+            
+            if (studyIndex !== -1) {
+                uploadedStudies[studyIndex].status = 'approved';
+                localStorage.setItem('wancharisi_uploaded_studies', JSON.stringify(uploadedStudies));
+
+                // إضافة للمكتبة
+                addStudyToLibrary(uploadedStudies[studyIndex]);
+
+                // تسجيل في التعليقات
+                const approvalComment = {
+                    id: Date.now(),
+                    author: 'نظام المراجعة',
+                    text: `✅ تمت الموافقة على تحميل الدراسة وإضافتها إلى المكتبة الرقمية.
+                    
+التاريخ: ${new Date().toLocaleString('ar-EG')}
+القرار: موافقة نهائية
+الحالة: تم التحميل والإضافة للمكتبة`,
+                    timestamp: new Date().toISOString(),
+                    isAI: false
+                };
+
+                discussionComments.push(approvalComment);
+                saveDiscussionComments(currentReviewStudyId);
+
+                showSuccessNotification('🎉 تمت الموافقة! تم تحميل الدراسة وإضافتها إلى المكتبة الرقمية بنجاح!');
+                
+                loadUploadedStudies();
+                closeReview();
+            }
+        }
+
+        // طلب تعديلات
+        function requestRevision() {
+            const revisionNotes = prompt('📝 الرجاء إدخال التعديلات المطلوبة:');
+            
+            if (!revisionNotes) return;
+
+            const revisionComment = {
+                id: Date.now(),
+                author: 'لجنة المراجعة',
+                text: `📋 تعديلات مطلوبة:
+
+${revisionNotes}
+
+⏱️ الرجاء إجراء التعديلات وإعادة الإرسال.
+سيتم التواصل مع المؤلف عبر البريد الإلكتروني.`,
+                timestamp: new Date().toISOString(),
+                isAI: false
+            };
+
+            discussionComments.push(revisionComment);
+            saveDiscussionComments(currentReviewStudyId);
+            renderComments();
+
+            showSuccessNotification('📮 تم إرسال طلب التعديلات للمؤلف');
+        }
+
+        // رفض الدراسة
+        function rejectStudyAfterReview() {
+            const rejectionReason = prompt('❌ الرجاء إدخال سبب الرفض:');
+            
+            if (!rejectionReason) return;
+
+            if (!confirm('هل أنت متأكد من رفض هذه الدراسة؟')) {
+                return;
+            }
+
+            let uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const studyIndex = uploadedStudies.findIndex(s => s.id === currentReviewStudyId);
+            
+            if (studyIndex !== -1) {
+                uploadedStudies[studyIndex].status = 'rejected';
+                localStorage.setItem('wancharisi_uploaded_studies', JSON.stringify(uploadedStudies));
+
+                const rejectionComment = {
+                    id: Date.now(),
+                    author: 'لجنة المراجعة',
+                    text: `❌ تم رفض الدراسة
+
+السبب: ${rejectionReason}
+
+التاريخ: ${new Date().toLocaleString('ar-EG')}`,
+                    timestamp: new Date().toISOString(),
+                    isAI: false
+                };
+
+                discussionComments.push(rejectionComment);
+                saveDiscussionComments(currentReviewStudyId);
+
+                showSuccessNotification('تم رفض الدراسة');
+                
+                loadUploadedStudies();
+                closeReview();
+            }
+        }
+
+        // إغلاق لوحة المراجعة
+        function closeReview() {
+            const reviewSection = document.getElementById('reviewSection');
+            reviewSection.style.display = 'none';
+            currentReviewStudyId = null;
+            discussionComments = [];
+        }
+
+        // ===== نظام التقارير =====
+
+        let expertReports = [];
+
+        // توليد تقرير مراجع بشري
+        function generateHumanReport() {
+            const reviewerName = prompt('👤 اسم المراجع:', 'د. محمد الأكاديمي');
+            if (!reviewerName) return;
+
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const study = uploadedStudies.find(s => s.id === currentReviewStudyId);
+            if (!study) return;
+
+            const report = {
+                id: Date.now(),
+                studyId: currentReviewStudyId,
+                type: 'human',
+                author: reviewerName,
+                date: new Date().toISOString(),
+                ratings: {
+                    originality: Math.floor(Math.random() * 2) + 4, // 4-5
+                    methodology: Math.floor(Math.random() * 2) + 4,
+                    accuracy: Math.floor(Math.random() * 2) + 4,
+                    contribution: Math.floor(Math.random() * 2) + 4
+                },
+                strengths: [
+                    'المنهجية العلمية واضحة ومتسقة',
+                    'البحث يتناول جوانب مهمة من تراث الونشريسي',
+                    'التوثيق والمراجع في مستوى احترافي',
+                    'الأسلوب الأكاديمي ملتزم بالمعايير'
+                ],
+                weaknesses: [
+                    'يمكن توسيع قسم النتائج والتوصيات',
+                    'بعض المصطلحات الفقهية تحتاج توضيح أكثر',
+                    'قلة المراجع الأجنبية المقارنة'
+                ],
+                suggestions: [
+                    'إضافة فصل عن التطبيقات المعاصرة',
+                    'توسيع الدراسة المقارنة مع فقهاء آخرين',
+                    'إضافة ملخص تنفيذي في البداية'
+                ],
+                recommendation: 'approved', // approved, revision, rejected
+                recommendationText: `بعد المراجعة الدقيقة، أرى أن الدراسة ذات قيمة علمية عالية وتستحق الموافقة على تحميلها وإضافتها للمكتبة الرقمية. المنهجية سليمة والنتائج قيمة، مع بعض التحسينات المقترحة للمستقبل.`
+            };
+
+            saveReport(report);
+            renderReports();
+            showSuccessNotification('✅ تم إضافة تقرير المراجع البشري بنجاح');
+        }
+
+        // توليد تقارير AI شاملة
+        function generateAllAIReports() {
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const study = uploadedStudies.find(s => s.id === currentReviewStudyId);
+            if (!study) return;
+
+            // تقرير AI Scholar Agent
+            const scholarReport = {
+                id: Date.now(),
+                studyId: currentReviewStudyId,
+                type: 'ai',
+                author: 'AI Scholar Agent',
+                agentType: 'academic',
+                date: new Date().toISOString(),
+                ratings: {
+                    originality: 4,
+                    methodology: 5,
+                    accuracy: 4,
+                    contribution: 4.5
+                },
+                strengths: [
+                    'المنهج البحثي متوافق مع المعايير الأكاديمية الدولية',
+                    'الدراسة تقدم إسهاماً واضحاً في مجال دراسات التراث المالكي',
+                    'التحليل النقدي للنصوص يظهر عمقاً علمياً',
+                    'البنية العامة للدراسة منطقية ومتماسكة'
+                ],
+                weaknesses: [
+                    'نسبة الاقتباسات المباشرة عالية نسبياً (25%)',
+                    'التحليل الإحصائي محدود في بعض الأقسام',
+                    'الدراسات المقارنة قليلة نسبياً'
+                ],
+                suggestions: [
+                    'تعزيز التحليل الكمي بجداول ورسوم بيانية',
+                    'إضافة دراسات حالة تطبيقية معاصرة',
+                    'توسيع قائمة المراجع الحديثة (آخر 5 سنوات)'
+                ],
+                technicalAnalysis: {
+                    wordCount: '~45000 كلمة',
+                    readabilityScore: '82/100 - مستوى أكاديمي',
+                    citationDensity: '15 مرجع لكل 1000 كلمة',
+                    originalityIndex: '92% - نسبة أصالة ممتازة'
+                },
+                recommendation: 'approved',
+                recommendationText: `بناءً على التحليل الأكاديمي الشامل، تستوفي الدراسة معايير الجودة العلمية. نوصي بالموافقة على تحميلها وإضافتها للمكتبة الرقمية مع بعض التحسينات الاختيارية.`
+            };
+
+            // تقرير AI Quality Agent
+            const qualityReport = {
+                id: Date.now() + 1,
+                studyId: currentReviewStudyId,
+                type: 'ai',
+                author: 'AI Quality Agent',
+                agentType: 'quality',
+                date: new Date().toISOString(),
+                ratings: {
+                    originality: 4,
+                    methodology: 5,
+                    accuracy: 5,
+                    contribution: 4
+                },
+                strengths: [
+                    'جودة ملف PDF ممتازة (نصوص قابلة للبحث)',
+                    'البيانات الوصفية كاملة ودقيقة',
+                    'الفهرسة والترقيم منظمان بشكل احترافي',
+                    'لا توجد أخطاء إملائية أو نحوية ظاهرة'
+                ],
+                weaknesses: [
+                    'حجم الملف كبير نسبياً (يمكن تحسينه)',
+                    'بعض الصور ذات دقة منخفضة',
+                    'التنسيق يختلف قليلاً بين الفصول'
+                ],
+                suggestions: [
+                    'ضغط الملف للحصول على حجم أصغر',
+                    'توحيد التنسيق في جميع الأقسام',
+                    'إضافة روابط تشعبية للمراجع'
+                ],
+                technicalChecks: {
+                    fileFormat: 'PDF/A - معيار الأرشفة ✅',
+                    fileSize: `${(study.fileSize / (1024 * 1024)).toFixed(2)} MB`,
+                    pages: study.pages || 'غير محدد',
+                    metadata: 'مكتملة 100% ✅',
+                    accessibility: 'متوافق مع معايير WCAG 2.1'
+                },
+                recommendation: 'approved',
+                recommendationText: `من منظور الجودة الفنية، الدراسة تستوفي جميع المعايير المطلوبة. نوصي بالموافقة مع إمكانية تحسين بعض الجوانب التقنية.`
+            };
+
+            // تقرير AI Deep Analysis Agent
+            const deepReport = {
+                id: Date.now() + 2,
+                studyId: currentReviewStudyId,
+                type: 'ai',
+                author: 'AI Deep Analysis Agent',
+                agentType: 'deep',
+                date: new Date().toISOString(),
+                ratings: {
+                    originality: 4.5,
+                    methodology: 4,
+                    accuracy: 4,
+                    contribution: 5
+                },
+                strengths: [
+                    'الإسهام العلمي واضح وقابل للقياس',
+                    'الربط بين التراث والمعاصرة متميز',
+                    'التحليل النقدي عميق ومتوازن',
+                    'القيمة المضافة للمجال البحثي كبيرة'
+                ],
+                weaknesses: [
+                    'الجانب التطبيقي يحتاج توسعاً',
+                    'بعض الاستنتاجات تحتاج دعماً أقوى',
+                    'التوصيات عامة نوعاً ما'
+                ],
+                suggestions: [
+                    'تطوير نموذج تطبيقي للنتائج',
+                    'إضافة دراسات ميدانية داعمة',
+                    'تحديد توصيات قابلة للتنفيذ'
+                ],
+                impactAnalysis: {
+                    scientificValue: '9/10 - قيمة علمية عالية',
+                    practicalValue: '7/10 - قابلية تطبيق جيدة',
+                    innovationLevel: '8/10 - مستوى ابتكار مرتفع',
+                    futureResearch: 'يفتح 5+ مجالات بحثية جديدة'
+                },
+                recommendation: 'approved',
+                recommendationText: `التحليل المعمق يظهر أن الدراسة تمثل إضافة نوعية للمكتبة الرقمية. نوصي بقوة بالموافقة على تحميلها وإضافتها، مع تشجيع الباحث على تطوير الجوانب التطبيقية في أبحاث مستقبلية.`
+            };
+
+            saveReport(scholarReport);
+            saveReport(qualityReport);
+            saveReport(deepReport);
+            
+            renderReports();
+            showSuccessNotification('🤖 تم توليد تقارير AI الشاملة بنجاح (3 تقارير)');
+        }
+
+        // حفظ تقرير
+        function saveReport(report) {
+            let allReports = JSON.parse(localStorage.getItem('wancharisi_expert_reports') || '{}');
+            if (!allReports[currentReviewStudyId]) {
+                allReports[currentReviewStudyId] = [];
+            }
+            allReports[currentReviewStudyId].push(report);
+            localStorage.setItem('wancharisi_expert_reports', JSON.stringify(allReports));
+            expertReports = allReports[currentReviewStudyId];
+        }
+
+        // تحميل تقارير الدراسة
+        function loadReports(studyId) {
+            const allReports = JSON.parse(localStorage.getItem('wancharisi_expert_reports') || '{}');
+            expertReports = allReports[studyId] || [];
+            renderReports();
+        }
+
+        // عرض التقارير
+        function renderReports() {
+            const humanReportsGrid = document.getElementById('humanReportsGrid');
+            const aiReportsGrid = document.getElementById('aiReportsGrid');
+
+            const humanReports = expertReports.filter(r => r.type === 'human');
+            const aiReports = expertReports.filter(r => r.type === 'ai');
+
+            // عرض تقارير المراجعين البشريين
+            if (humanReports.length === 0) {
+                humanReportsGrid.innerHTML = `
+                    <div class="no-reports">
+                        <i class="fas fa-file-alt"></i>
+                        <p>لا توجد تقارير من المراجعين البشريين بعد</p>
+                    </div>
+                `;
+            } else {
+                humanReportsGrid.innerHTML = humanReports.map(report => createReportCard(report)).join('');
+            }
+
+            // عرض تقارير AI
+            if (aiReports.length === 0) {
+                aiReportsGrid.innerHTML = `
+                    <div class="no-reports">
+                        <i class="fas fa-robot"></i>
+                        <p>لا توجد تقارير من وكلاء AI بعد</p>
+                    </div>
+                `;
+            } else {
+                aiReportsGrid.innerHTML = aiReports.map(report => createReportCard(report)).join('');
+            }
+        }
+
+        // إنشاء بطاقة تقرير
+        function createReportCard(report) {
+            const avgRating = ((report.ratings.originality + report.ratings.methodology + 
+                               report.ratings.accuracy + report.ratings.contribution) / 4).toFixed(1);
+            
+            const recClass = report.recommendation === 'approved' ? '' : 
+                            report.recommendation === 'revision' ? 'warning' : 'critical';
+            
+            const recIcon = report.recommendation === 'approved' ? 'fa-check-circle' : 
+                           report.recommendation === 'revision' ? 'fa-edit' : 'fa-times-circle';
+
+            let technicalSection = '';
+            if (report.technicalAnalysis) {
+                technicalSection = `
+                    <div class="report-section-title">
+                        <i class="fas fa-cog"></i> التحليل التقني
+                    </div>
+                    <ul class="report-list">
+                        <li><strong>عدد الكلمات:</strong> ${report.technicalAnalysis.wordCount}</li>
+                        <li><strong>مستوى القراءة:</strong> ${report.technicalAnalysis.readabilityScore}</li>
+                        <li><strong>كثافة الاستشهادات:</strong> ${report.technicalAnalysis.citationDensity}</li>
+                        <li><strong>مؤشر الأصالة:</strong> ${report.technicalAnalysis.originalityIndex}</li>
+                    </ul>
+                `;
+            }
+
+            if (report.technicalChecks) {
+                technicalSection = `
+                    <div class="report-section-title">
+                        <i class="fas fa-check-double"></i> الفحوصات الفنية
+                    </div>
+                    <ul class="report-list">
+                        <li><strong>صيغة الملف:</strong> ${report.technicalChecks.fileFormat}</li>
+                        <li><strong>حجم الملف:</strong> ${report.technicalChecks.fileSize}</li>
+                        <li><strong>عدد الصفحات:</strong> ${report.technicalChecks.pages}</li>
+                        <li><strong>البيانات الوصفية:</strong> ${report.technicalChecks.metadata}</li>
+                        <li><strong>إمكانية الوصول:</strong> ${report.technicalChecks.accessibility}</li>
+                    </ul>
+                `;
+            }
+
+            if (report.impactAnalysis) {
+                technicalSection = `
+                    <div class="report-section-title">
+                        <i class="fas fa-chart-line"></i> تحليل الأثر
+                    </div>
+                    <ul class="report-list">
+                        <li><strong>القيمة العلمية:</strong> ${report.impactAnalysis.scientificValue}</li>
+                        <li><strong>القيمة العملية:</strong> ${report.impactAnalysis.practicalValue}</li>
+                        <li><strong>مستوى الابتكار:</strong> ${report.impactAnalysis.innovationLevel}</li>
+                        <li><strong>البحوث المستقبلية:</strong> ${report.impactAnalysis.futureResearch}</li>
+                    </ul>
+                `;
+            }
+
+            return `
+                <div class="report-card ${report.type}">
+                    <div class="report-header">
+                        <div class="report-author ${report.type}">
+                            <i class="fas ${report.type === 'human' ? 'fa-user-tie' : 'fa-robot'}"></i>
+                            <span>${report.author}</span>
+                        </div>
+                        <div class="report-date">${new Date(report.date).toLocaleString('ar-EG')}</div>
+                    </div>
+
+                    <div class="report-rating">
+                        <div class="rating-item">
+                            <div class="rating-label">الأصالة</div>
+                            <div class="rating-stars">${generateStars(report.ratings.originality)}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">المنهجية</div>
+                            <div class="rating-stars">${generateStars(report.ratings.methodology)}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">الدقة</div>
+                            <div class="rating-stars">${generateStars(report.ratings.accuracy)}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">الإسهام</div>
+                            <div class="rating-stars">${generateStars(report.ratings.contribution)}</div>
+                        </div>
+                        <div class="rating-item">
+                            <div class="rating-label">المعدل</div>
+                            <div class="rating-stars"><strong>${avgRating}/5</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="report-content">
+                        <div class="report-section-title">
+                            <i class="fas fa-plus-circle"></i> نقاط القوة
+                        </div>
+                        <ul class="report-list">
+                            ${report.strengths.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+
+                        <div class="report-section-title">
+                            <i class="fas fa-exclamation-triangle"></i> نقاط الضعف
+                        </div>
+                        <ul class="report-list">
+                            ${report.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                        </ul>
+
+                        <div class="report-section-title">
+                            <i class="fas fa-lightbulb"></i> المقترحات
+                        </div>
+                        <ul class="report-list">
+                            ${report.suggestions.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+
+                        ${technicalSection}
+
+                        <div class="report-recommendation ${recClass}">
+                            <div class="recommendation-label ${recClass}">
+                                <i class="fas ${recIcon}"></i>
+                                التوصية النهائية
+                            </div>
+                            <p>${report.recommendationText}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // توليد نجوم التقييم
+        function generateStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalf = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            if (hasHalf) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            const emptyStars = 5 - fullStars - (hasHalf ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // تصدير التقارير كـ PDF (محاكاة)
+        function exportReportsPDF() {
+            if (expertReports.length === 0) {
+                alert('⚠️ لا توجد تقارير لتصديرها');
+                return;
+            }
+            
+            alert('📄 سيتم تصدير التقارير كملف PDF...\n\n(في النسخة الفعلية، سيتم إنشاء ملف PDF يحتوي على جميع التقارير)');
+            showSuccessNotification('✅ تم تصدير التقارير بنجاح');
+        }
+
+        // طباعة التقارير
+        function printReports() {
+            if (expertReports.length === 0) {
+                alert('⚠️ لا توجد تقارير للطباعة');
+                return;
+            }
+            
+            window.print();
+        }
+
+        // توليد تقرير ملخص
+        function generateSummaryReport() {
+            if (expertReports.length === 0) {
+                alert('⚠️ لا توجد تقارير لإنشاء ملخص');
+                return;
+            }
+
+            const uploadedStudies = JSON.parse(localStorage.getItem('wancharisi_uploaded_studies') || '[]');
+            const study = uploadedStudies.find(s => s.id === currentReviewStudyId);
+
+            // حساب المعدلات
+            const avgRatings = {
+                originality: 0,
+                methodology: 0,
+                accuracy: 0,
+                contribution: 0
+            };
+
+            expertReports.forEach(report => {
+                avgRatings.originality += report.ratings.originality;
+                avgRatings.methodology += report.ratings.methodology;
+                avgRatings.accuracy += report.ratings.accuracy;
+                avgRatings.contribution += report.ratings.contribution;
+            });
+
+            Object.keys(avgRatings).forEach(key => {
+                avgRatings[key] = (avgRatings[key] / expertReports.length).toFixed(1);
+            });
+
+            const overallAvg = ((parseFloat(avgRatings.originality) + parseFloat(avgRatings.methodology) + 
+                                parseFloat(avgRatings.accuracy) + parseFloat(avgRatings.contribution)) / 4).toFixed(1);
+
+            const approvedCount = expertReports.filter(r => r.recommendation === 'approved').length;
+            const revisionCount = expertReports.filter(r => r.recommendation === 'revision').length;
+            const rejectedCount = expertReports.filter(r => r.recommendation === 'rejected').length;
+
+            const summaryReport = `
+═══════════════════════════════════════════════════
+        📋 تقرير ملخص المراجعة
+═══════════════════════════════════════════════════
+
+📚 الدراسة: ${study.title}
+✍️ المؤلف: ${study.author}
+📅 السنة: ${study.year}
+🏢 الناشر: ${study.publisher}
+
+═══════════════════════════════════════════════════
+        📊 إحصائيات المراجعة
+═══════════════════════════════════════════════════
+
+عدد التقارير الإجمالي: ${expertReports.length}
+• تقارير المراجعين البشريين: ${expertReports.filter(r => r.type === 'human').length}
+• تقارير وكلاء AI: ${expertReports.filter(r => r.type === 'ai').length}
+
+═══════════════════════════════════════════════════
+        ⭐ التقييمات المجمعة
+═══════════════════════════════════════════════════
+
+الأصالة العلمية: ${avgRatings.originality}/5
+المنهجية العلمية: ${avgRatings.methodology}/5
+دقة المعلومات: ${avgRatings.accuracy}/5
+الإسهام العلمي: ${avgRatings.contribution}/5
+
+📈 المعدل الإجمالي: ${overallAvg}/5
+
+═══════════════════════════════════════════════════
+        ⚖️ التوصيات
+═══════════════════════════════════════════════════
+
+✅ الموافقة: ${approvedCount} تقرير (${((approvedCount/expertReports.length)*100).toFixed(0)}%)
+✏️ طلب تعديلات: ${revisionCount} تقرير (${((revisionCount/expertReports.length)*100).toFixed(0)}%)
+❌ الرفض: ${rejectedCount} تقرير (${((rejectedCount/expertReports.length)*100).toFixed(0)}%)
+
+═══════════════════════════════════════════════════
+        🎯 القرار المقترح
+═══════════════════════════════════════════════════
+
+${approvedCount > expertReports.length / 2 ? 
+  '✅ الموافقة على تحميل الدراسة وإضافتها للمكتبة الرقمية\n\nالأغلبية من المراجعين يوصون بالموافقة.' :
+  revisionCount > expertReports.length / 2 ?
+  '✏️ طلب تعديلات من المؤلف\n\nالأغلبية من المراجعين يوصون بإجراء تعديلات.' :
+  '❌ مراجعة إضافية مطلوبة\n\nالآراء متباينة، يُنصح بمراجعة إضافية.'}
+
+═══════════════════════════════════════════════════
+التاريخ: ${new Date().toLocaleString('ar-EG')}
+═══════════════════════════════════════════════════
+            `;
+
+            alert(summaryReport);
+        }
+    </script>
 </body>
 </html>

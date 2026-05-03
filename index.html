@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="translations.js"></script>
 </head>
 <body>
     <!-- شريط التاريخ والوقت -->
@@ -36,16 +37,18 @@
         <div class="container">
             <div class="logo">
                 <i class="fas fa-book-open"></i>
-                <span>منصة الونشريسي الرقمية</span>
+                <span data-i18n="site_title">منصة الونشريسي الرقمية</span>
             </div>
             <ul class="nav-links">
-                <li><a href="index.html" class="nav-link active">الرئيسية</a></li>
-                <li><a href="library.html" class="nav-link">المكتبة الرقمية</a></li>
-                <li><a href="upload.html" class="nav-link">تحميل المؤلفات</a></li>
-                <li><a href="verification.html" class="nav-link">التحقق من النصوص</a></li>
-                <li><a href="ai-engine.html" class="nav-link">محرك الأفكار</a></li>
-                <li><a href="matching.html" class="nav-link">مطابقة النوازل</a></li>
+                <li><a href="index.html" class="nav-link active" data-i18n="nav_home">الرئيسية</a></li>
+                <li><a href="library.html" class="nav-link" data-i18n="nav_library">المكتبة الرقمية</a></li>
+                <li><a href="asjp-articles.html" class="nav-link" data-i18n="nav_asjp">مقالات ASJP</a></li>
+                <li><a href="upload.html" class="nav-link" data-i18n="nav_upload">تحميل المؤلفات</a></li>
+                <li><a href="verification.html" class="nav-link" data-i18n="nav_verification">التحقق من النصوص</a></li>
+                <li><a href="ai-engine.html" class="nav-link" data-i18n="nav_ai_engine">محرك الأفكار</a></li>
+                <li><a href="matching.html" class="nav-link" data-i18n="nav_matching">مطابقة النوازل</a></li>
             </ul>
+            <button class="language-toggle" id="languageToggle">EN</button>
             <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -224,8 +227,8 @@
                 <div class="footer-section">
                     <h4>اتصل بنا</h4>
                     <ul>
-                        <li><i class="fas fa-envelope"></i> info@wancharisi.com</li>
-                        <li><i class="fas fa-phone"></i> +213 XXX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> mokhtar.bendjelloul@univ-tiaret.dz</li>
+                        <li><i class="fas fa-phone"></i> +213 0675484880</li>
                         <li><i class="fas fa-map-marker-alt"></i> الجزائر</li>
                     </ul>
                 </div>
